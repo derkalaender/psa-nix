@@ -1,0 +1,99 @@
+[[users]]
+username = "ge95vir"
+uid = 1010
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEXPasCKmYHeTJ06DBWXCaYYUVM/Euo+X5tU0WpGWxRt gedeon.lenz@tum.de"
+
+[[users]]
+username = "ge43fim"
+uid = 1011
+ssh_key = ""
+
+[[users]]
+username = "ge78nes"
+uid = 1020
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN8UlkVfMHSKssjMGGDOi79yNQC1OT81XB8fMk8EE9Mb nastja@w205-2c-v4.eduroam.dynamic.rbg.tum.de"
+
+[[users]]
+username = "ge96hoj"
+uid = 1021
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUNGYlJSPF3pallfNKZoalknfH2Ep115DAJ0rxgqO6P louis@louis-ubuntu-2024"
+
+[[users]]
+username = "ge78zig"
+uid = 1030
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIFKywkjovjz87VQHeNVSGUlc/5Nl4eH4Hj1SrYHIeqM"
+
+[[users]]
+username = "ge96xok"
+uid = 1031
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBwkCLE+pDy8HvHy98MwsNH/sxPYmBRXuREOd2jTMXPV timon.ensel@tum.de"
+
+[[users]]
+username = "ge87yen"
+uid = 1040
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICNOSacJR2QmqoyuTLVb7HMNceyZ1iJMysrLelGbKdt2 joana.arguirova@tum.de"
+
+[[users]]
+username = "ge47sof"
+uid = 1041
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH28yN3KD2y7WNss5Kko8C8t0JShA2fMaFuqA4SD0xKB manuela.rosenlehner@tum.de"
+
+[[users]]
+username = "ge47kut"
+uid = 1050
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAF16c1yC1VO+Y3edoOpRGMnPTbwXnhQC3IFyT+8Rrvl oliver.duerer@tum.de"
+
+[[users]]
+username = "ge87liq"
+uid = 1051
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINqLECy9QVF4zJsPg/EqwHjDfBI1cid5XQquwCVf2xcR christian.krinitsin@tum.de"
+
+[[users]]
+username = "ge59pib"
+uid = 1060
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINTyrsqSn9oAlqyThh1VoIqLoOzNV5a9IAeERC09fAFU im-in-your-walls"
+
+[[users]]
+username = "ge65peq"
+uid = 1061
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBKmGZBpo2o5HMwSCOLVuznuaZ0ZdJgedaRyTYFxJzEK christian.sommer@tum.de"
+
+[[users]]
+username = "ge63gut"
+uid = 1070
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMqGJj/qaJn7hULwBvUBdxwSij5dJ1l1ErFmYj8b7aVh sina.mozaffari-tabar@tum.de"
+
+[[users]]
+username = "ge64baw"
+uid = 1071
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID74Bxdsa6oQATpMu6sPJ/49J8KcG3wHDz2Wsgk8n+ZE mostafa.nejati.hatamian@tum.de"
+
+[[users]]
+username = "ge84zoj"
+uid = 1080
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP11LUlgDrjK7Bf3jwmQuuUKkWLRgDXNPx9g4sn1+iC7 bjarne.hansen@proton.me"
+
+[[users]]
+username = "ge94bob"
+uid = 1081
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIgT4clpBTjp7UeMqP/Qy1mchYBYAZPWuZ0xr9ZOiviG fabianluca.schulz@tum.de"
+
+[[users]]
+username = "ge87huk"
+uid = 1090
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGeIYnWtdhXEbQ+ZxiEd9Ad5/C4BdK60G8k7fJ4XAu34 ge87huk@mytum.de"
+
+[[users]]
+username = "ge64wug"
+uid = 1091
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEN53t0LaDrA2zQtW6jIk5xAndloBe09rXfbaS6QwXq+ sophie@Sophies-Mac.fritz.box"
+
+[[users]]
+username = "ge65hog"
+uid = 1100
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEeWH4TQsfrcYjQWCylMHqOy3y/RsaahdAI0QdkiyUXJ katharina.schmenn@tum.de"
+
+[[users]]
+username = "ge38hoy"
+uid = 1101
+ssh_key = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIK4f12ldfJGJhMUbAYOz5E3aXc+F6SScLb2n2KdVfqu4AAAAC3NzaDp0ZXJtaXVz"
