@@ -22,7 +22,7 @@ in
 {
   # Gruppe "psa" erstellen
   users.groups.psa = {
-  	gid = 1000;
+    gid = 1000;
   };
 
   # Create the users by mapping the TOML users array through the mkUser function and then converting it to an attribute set

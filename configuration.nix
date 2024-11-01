@@ -53,14 +53,14 @@
   };
 
   users.users.ge65peq = {
-  	isNormalUser = true;
-  	extraGroups = [ "wheel" ];
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
 
-  	hashedPassword = "$y$j9T$ozWdR.RlFFi9Nb/VNvx2g.$XA8Y3YZuLbI8t943rRWkkP5oxuYXId9FT5TcHK8v1.3";
+    hashedPassword = "$y$j9T$ozWdR.RlFFi9Nb/VNvx2g.$XA8Y3YZuLbI8t943rRWkkP5oxuYXId9FT5TcHK8v1.3";
 
-  	openssh.authorizedKeys.keys = [
-  	  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBKmGZBpo2o5HMwSCOLVuznuaZ0ZdJgedaRyTYFxJzEK christian.sommer@tum.de"
-  	];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBKmGZBpo2o5HMwSCOLVuznuaZ0ZdJgedaRyTYFxJzEK christian.sommer@tum.de"
+    ];
   };
 
   users.users.root = { 
