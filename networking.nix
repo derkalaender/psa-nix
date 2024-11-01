@@ -51,9 +51,15 @@
 
   # ICMP Redirects deaktivieren & IPv6
   boot.kernel.sysctl = {
+    "net.ipv4.conf.all.send_redirects" = false;
+    "net.ipv4.conf.default.send_redirects" = false;
+    "net.ipv6.conf.all.send_redirects" = false;
+    "net.ipv6.conf.default.send_redirects" = false;
     "net.ipv4.conf.all.accept_redirects" = false;
+    "net.ipv4.conf.default.accept_redirects" = false;
     "net.ipv6.conf.all.accept_redirects" = false;
-
+    "net.ipv6.conf.default.accept_redirects" = false;
+    
     "net.ipv6.conf.all.disable_ipv6" = true;
     "net.ipv6.conf.default.disable_ipv6" = true;
   };
