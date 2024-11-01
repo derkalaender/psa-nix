@@ -86,6 +86,21 @@
     registry = lib.mapAttrs (_: flake: {inherit flake;}) inputs;
     nixPath = lib.mapAttrsToList (name: _: "${name}=flake:${name}") inputs;
   };
+
+  # A few nice helpers
+  environment.systemPackages = with pkgs; [
+    micro # easy editor
+    bat # better cat
+    tlrc # easier man
+    traceroute
+    nmap
+    netcat-gnu
+    wget
+    curl
+    dig
+    bottom # better top
+    gping # graphical ping
+  ];
   
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.
