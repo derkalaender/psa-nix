@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ ... }:
 
 {
   # Legacy DHCP deaktivieren
@@ -41,6 +41,8 @@
   	    { routeConfig = { Destination = "192.168.9.0/24"; Gateway = "192.168.96.9"; }; }
   	    { routeConfig = { Destination = "192.168.10.0/24"; Gateway = "192.168.106.10"; }; }
   	  ];
+  	  # Enable IPv4 (&IPv6) Forwarding
+  	  networkConfig.IPForward = "yes";
   	};
   };
 
