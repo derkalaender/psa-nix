@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./users.nix
       ./networking.nix
+      ./firewall.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
