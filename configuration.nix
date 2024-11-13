@@ -11,6 +11,7 @@
       ./users.nix
       ./networking.nix
       ./firewall.nix
+      ./dns.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
