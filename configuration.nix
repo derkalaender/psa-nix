@@ -88,6 +88,9 @@
     nixPath = lib.mapAttrsToList (name: _: "${name}=flake:${name}") inputs;
   };
 
+  # Correct timezone
+  time.timeZone = "CET";
+
   # A few nice helpers
   environment.systemPackages = with pkgs; [
     micro # easy editor
