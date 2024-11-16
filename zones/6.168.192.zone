@@ -2,7 +2,7 @@
 
 $TTL 300 ; Caching Dauer in Sekunden
 @   IN   SOA      ns1.psa-team06.cit.tum.de. admin.psa-team06.cit.tum.de. (
-                  2024111301  ; Serial - Versionsnummer (oft Datum gefolgt von Counter), muss bei Änderungen inkrementiert werden, damit Secondaries neuen Zone-Transfer durchführen
+                  2024111601  ; Serial - Versionsnummer (oft Datum gefolgt von Counter), muss bei Änderungen inkrementiert werden, damit Secondaries neuen Zone-Transfer durchführen
                   300         ; Refresh - Timeout in Sekunden, nachdem Secondaries den Primary neu anfragen sollen
                   60          ; Retry - Timeout in Sekunden, nachdem ein Secondary den Refresh erneut versucht sollte es gescheitert sein
                   3600000     ; Expire - Timeout in Sekunden, nachdem ein Secondary aufgibt

@@ -29,7 +29,8 @@ in
         psa-team06.cit.tum.de {
                 file psa-team06.zone
                 transfer {
-                        to *
+                        to 192.168.5.1
+                        to 192.168.7.1 # this is a guess, not working atm?
                 }
                 import common
         }
@@ -38,7 +39,8 @@ in
         6.168.192.in-addr.arpa {
                 file 6.168.192.zone
                 transfer {
-                        to *
+                        to 192.168.5.1
+                        to 192.168.7.1 # this is a guess, not working atm?
                 }
                 import common
         }
@@ -52,10 +54,6 @@ in
         }
         
         psa-team02.cit.tum.de 2.168.192.in-addr.arpa {
-        #       works
-                secondary {
-                        transfer from 192.168.2.1
-                }
                 forward . 192.168.2.1
                 import common
         }
@@ -71,33 +69,27 @@ in
         }
         
         psa-team05.cit.tum.de 5.168.192.in-addr.arpa {
-        #       doesn't work
-        #       secondary {
-        #               transfer from 192.168.5.1
-        #       }
+                secondary {
+                        transfer from 192.168.5.1
+                }
                 forward . 192.168.5.1
                 import common
         }
         
         psa-team07.cit.tum.de 7.168.192.in-addr.arpa {
-        #       doesn't work
-        #       secondary {
-        #               transfer from 192.168.7.1
-        #       }
+                secondary {
+                        transfer from 192.168.7.1
+                }
                 forward . 192.168.7.1
                 import common
         }
         
         psa-team08.cit.tum.de 8.168.192.in-addr.arpa {
-                forward . 192.168.8.5
+                forward . 192.168.8.6
                 import common
         }
         
         psa-team09.cit.tum.de 9.168.192.in-addr.arpa {
-        #       doesn't work
-        #       secondary {
-        #               transfer from 192.168.9.1
-        #       }
                 forward . 192.168.9.1
                 import common
         }
