@@ -17,6 +17,8 @@
     # Interface für internen PSA Zugang
     networks."10-psa" = {
       name = "enp0s8";
+      networkConfig.Domains = [ "psa-team06.cit.tum.de" ];
+      networkConfig.DNS = "192.168.6.1";
       address = [
         "192.168.6.1/24" # Team Subnet
         # Restliche Inter-PSA Subnets
