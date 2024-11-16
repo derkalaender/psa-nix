@@ -6,7 +6,7 @@ ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEXPasCKmYHeTJ06DBWXCaYYUVM/Euo+X
 [[users]]
 username = "ge43fim"
 uid = 1011
-ssh_key = ""
+ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICJxRi9ByDSdft3zbasPq04DvoDHZDKHLzg5vtP+Caii andrey.maleev@tum.de"
 
 [[users]]
 username = "ge78nes"
