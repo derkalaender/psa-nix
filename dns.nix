@@ -30,7 +30,9 @@ in
                 file psa-team06.zone
                 transfer {
                         to 192.168.5.1
-                        to 192.168.7.1 # this is a guess, not working atm?
+                        to 192.168.65.5
+                        to 192.168.7.1
+                        to 192.168.76.7
                 }
                 import common
         }
@@ -40,7 +42,9 @@ in
                 file 6.168.192.zone
                 transfer {
                         to 192.168.5.1
-                        to 192.168.7.1 # this is a guess, not working atm?
+                        to 192.168.65.5
+                        to 192.168.7.1
+                        to 192.168.76.7
                 }
                 import common
         }
