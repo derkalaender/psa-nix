@@ -107,6 +107,28 @@
     bottom # better top
     gping # graphical ping
   ];
+
+  # Message of the day - helps newcomers to NixOS
+  users.motd =
+    ''
+      Welcome to this Server! We're running NixOS 24.05 here.
+
+      You may notice that a lot of standard packages are missing.
+      This is by design! You can easily use *ANY* package on this system :D
+      Just run one of the following commands and replace "cowsay" with the package of your choice.
+      If you need a more recent version, replace "nixpkgs" with "unstable"! 
+      You can find all available packages here: https://search.nixos.org/packages?channel=24.05
+
+      - Add a package temporarily to your shell: nix shell nixpkgs#cowsay
+      - Run a package once with arguments: nix run nixpkgs#cowsay -- "Meow meow, I'm a cow"
+      - Add a package permanently to your profile (not recommended): nix profile install nixpkgs#cowsay
+
+      If you have any questions, check out our wiki pages or ask!
+    '';
+  security.pam.services = {
+    sshd.showMotd = true;
+    login.showMotd = true;
+  };
   
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.
