@@ -76,7 +76,6 @@ in
                 secondary {
                         transfer from 192.168.5.1
                 }
-                forward . 192.168.5.1
                 import common
         }
         
@@ -84,7 +83,6 @@ in
                 secondary {
                         transfer from 192.168.7.1
                 }
-                forward . 192.168.7.1
                 import common
         }
         
