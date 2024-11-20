@@ -46,6 +46,24 @@
                                 "hw-address": "08:00:27:6c:12:0c",
                                 "ip-address": "192.168.6.2",
                                 "hostname": "vmpsateam06-02"
+                        },
+                        // VM3
+                        {
+                                "hw-address": "08:00:27:f0:2b:bc",
+                                "ip-address": "192.168.6.3",
+                                "hostname": "vmpsateam06-03"
+                        },
+                        // VM4
+                        {
+                                "hw-address": "08:00:27:e6:0d:1d",
+                                "ip-address": "192.168.6.4",
+                                "hostname": "vmpsateam06-04"
+                        },
+                        // VM5
+                        {
+                        	    "hw-address": "08:00:27:10:20:f5",
+                        	    "ip-address": "192.168.6.5",
+                        	    "hostname": "vmpsateam06-05"
                         }
                 ]
                 }
