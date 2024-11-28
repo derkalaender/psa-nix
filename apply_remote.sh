@@ -1,3 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env nix
+#!nix shell github:zhaofengli/colmena --command bash
 
-nixos-rebuild switch --flake .#vmpsateam06-01 --target-host root@vmpsateam06-01
+colmena apply --experimental-flake-eval
