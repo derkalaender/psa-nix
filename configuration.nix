@@ -8,11 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./users.nix
-      ./networking.nix
-      ./firewall.nix
-      ./dns.nix
-      ./dhcp.nix
+      ./modules
     ];
 
   # Use the systemd-boot EFI boot loader.
