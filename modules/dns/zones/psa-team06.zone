@@ -18,3 +18,8 @@ kawauso   A       192.168.6.2
 neko      A       192.168.6.3
 alphonse  A       192.168.6.4
 edward    A       192.168.6.5
+kumo      A       192.168.6.6
+
+; Webserver
+peter     CNAME   kumo
+parker    A       192.168.6.69

@@ -20,3 +20,4 @@ $TTL 300 ; Caching Dauer in Sekunden
 3         PTR     neko.psa-team06.cit.tum.de.
 4         PTR     alphonse.psa-team06.cit.tum.de.
 5         PTR     edward.psa-team06.cit.tum.de.
+6         PTR     kumo.psa-team06.cit.tum.de.

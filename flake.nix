@@ -41,6 +41,16 @@
           ./vms/shika.nix
         ];
       };
+
+      kumo = {
+      	# ssh port
+      	deployment.targetPort = 60606;
+
+      	#import configuration
+      	imports = [
+      	  ./vms/kumo.nix	
+      	];
+      };
     };
   };
 }
