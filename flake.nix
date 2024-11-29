@@ -24,16 +24,21 @@
       defaults = {
         # all deployments happen on the PSA server
         deployment.targetHost = "psa.in.tum.de";
+
+        # hardware configuration and modules is the same for each VM
+        imports = [
+          ./hardware-configuration.nix
+          ./modules
+        ];
       };
 
-      "vmpsateam06-01" = {
+      shika = {
         # ssh port
         deployment.targetPort = 60601;
 
         # import configuration
         imports = [
-          { networking.hostName = "vmpsateam06-01"; }
-          ./configuration.nix
+          ./vms/shika.nix
         ];
       };
     };
