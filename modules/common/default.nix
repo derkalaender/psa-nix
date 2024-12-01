@@ -87,7 +87,7 @@
     nmap
     netcat-gnu
     wget
-    curl
+    curlWithGnuTls
     dig
     bottom # better top
     gping # graphical ping
