@@ -2,5 +2,5 @@
 
 {
   networking.hostName = "vmpsateam06-06";
-  # TODO
+  psa.webserver.enable = true;
 }
