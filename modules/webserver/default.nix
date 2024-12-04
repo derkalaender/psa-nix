@@ -35,11 +35,28 @@ in
           extraConfig =
             ''
               # Adapted from https://github.com/NixOS/nixpkgs/blob/7e1ca67996afd8233d9033edd26e442836cc2ad6/nixos/modules/services/web-servers/apache-httpd/default.nix#L249-L262
+
+              RewriteEngine on
+              RewriteRule "^/~(\w+?)$" "/~$1/" [PT]
+
               UserDir .html-data
               UserDir disabled root
+              ScriptAliasMatch "^/~(\w+?)/cgi-bin/(.*)$" "/home/$1/.cgi-bin/$2"
+              
               <Directory "/home/*/.html-data">
                 AllowOverride FileInfo AuthConfig Limit Indexes
                 Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec
+                <Limit GET POST OPTIONS>
+                  Require all granted
+                </Limit>
+                <LimitExcept GET POST OPTIONS>
+                  Require all denied
+                </LimitExcept>
+              </Directory>
+
+              <Directory "/home/*/.cgi-bin">
+                Options ExecCGI
+                SetHandler cgi-script
                 <Limit GET POST OPTIONS>
                   Require all granted
                 </Limit>

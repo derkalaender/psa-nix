@@ -1,10 +1,12 @@
-{ lib, ... }:
+{ lib, config, ... }:
 
 with lib;
 
 let
   # Get the users array from the users.toml file
   users = (trivial.importTOML ./users.toml).users;
+
+  cfg = config.psa;
 
   # Create a single user from an element of the users TOML array.
   # We use the special attributes "name" and "value" here which allow
@@ -16,6 +18,9 @@ let
       uid = user.uid;
       group = "psa";
       openssh.authorizedKeys.keys = lists.optional (user.ssh_key != "") user.ssh_key; # create a list with the key if it exists, empty list otherwise
+
+      # On the webserver, the home directory needs o+x permission
+      homeMode = lib.mkIf cfg.webserver.enable "701";
     };
   };
 in
