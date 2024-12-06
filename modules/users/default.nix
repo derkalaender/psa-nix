@@ -18,18 +18,27 @@ let
       uid = user.uid;
       group = "psa";
       openssh.authorizedKeys.keys = lists.optional (user.ssh_key != "") user.ssh_key; # create a list with the key if it exists, empty list otherwise
-
-      # On the webserver, the home directory needs o+x permission
-      homeMode = lib.mkIf cfg.webserver.enable "701";
     };
   };
 in
 {
-  # Gruppe "psa" erstellen
-  users.groups.psa = {
-    gid = 1000;
+  options = {
+    psa.users.psa = mkOption {
+      type = types.listOf types.str;
+      description = "PSA users";
+    };
   };
 
-  # Create the users by mapping the TOML users array through the mkUser function and then converting it to an attribute set
-  users.users = builtins.listToAttrs (map mkUser users);
+  config = {
+    # Gruppe "psa" erstellen
+    users.groups.psa = {
+      gid = 1000;
+    };
+    
+    # Create the users by mapping the TOML users array through the mkUser function and then converting it to an attribute set
+    users.users = builtins.listToAttrs (map mkUser users);
+
+    # PSA User für andere Module bereitstellen
+    psa.users.psa = map (u: u.username) users;
+  };
 }
