@@ -24,7 +24,7 @@ in
 	  # Interface für Internet Zugang
 	  networks."10-internet" = {
         name = "enp0s3";
-        DHCP = "yes"; # Wir brauchen eine IP-Adresse für Internet Zugang.
+        DHCP = "ipv4"; # Wir brauchen eine IP-Adresse für Internet Zugang.
         dhcpV4Config = {
           # Wir wollen weder den DNS Server noch die Domain durch dieses Interface festlegen.
           # Das soll nur durch unseren eigenen DHCP Server getan werden.
@@ -87,7 +87,7 @@ in
     # systemd-resolved wird für korrektes DNS benötigt
     services.resolved.enable = true;
     
-    # ICMP Redirects deaktivieren & IPv6 auch
+    # ICMP Redirects deaktivieren
     boot.kernel.sysctl = {
       "net.ipv4.conf.all.send_redirects" = false;
       "net.ipv4.conf.default.send_redirects" = false;
@@ -97,10 +97,10 @@ in
       "net.ipv4.conf.default.accept_redirects" = false;
       "net.ipv6.conf.all.accept_redirects" = false;
       "net.ipv6.conf.default.accept_redirects" = false;
-       
-      "net.ipv6.conf.all.disable_ipv6" = true;
-      "net.ipv6.conf.default.disable_ipv6" = true;
     };
+
+    # IPv6 deaktivieren
+    networking.enableIPv6 = lib.mkForce false;
 
     # Als Router stellen wir auch DNS und DHCP bereit
     psa = lib.mkIf cfg.router {
