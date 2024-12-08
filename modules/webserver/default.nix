@@ -10,8 +10,8 @@ let
   # Gemeine SSL Attribute
   sslAttr = {
     forceSSL = true; # SSL redirect
-    sslCertificateKey = ./apache-selfsigned.key;
-    sslCertificate = ./apache-selfsigned.crt;
+    sslCertificateKey = "/etc/ssl/nginx/private/nginx.key";
+    sslCertificate = "/etc/ssl/nginx/nginx.crt";
   };
 in
 {
@@ -120,6 +120,7 @@ in
                     cat > "$cgi_bin_dir/index.sh" << 'EOF'
                   #!/run/current-system/sw/bin/bash
                   echo "Content-type: text/html"
+                  echo ""
                   echo "👋 Hello dynamically from $(whoami)"
                   EOF
                     chmod +x "$cgi_bin_dir/index.sh"
@@ -133,7 +134,7 @@ in
       config.psa.users.psa
     );
 
-    system.environmentPackages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       bash
       perl
       php
