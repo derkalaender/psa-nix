@@ -31,12 +31,23 @@ in
           UseDNS = false;
           UseDomains = false;
         };
+        # Deaktivieren von IPv6 Link-Local & RAs
+        networkConfig = {
+          LinkLocalAddressing = false;
+          IPv6AcceptRA = false;
+        };
       };
 
       # Interface für internes PSA Netz
       networks."10-psa" = lib.mkMerge [
         {
           name = "enp0s8";
+
+          # Deaktivieren von IPv6 Link-Local & RAs
+          networkConfig = {
+            LinkLocalAddressing = false;
+            IPv6AcceptRA = false;
+          };
         }
         # Falls wir kein Router sind, legen wir alles über DHCP (mit AllowList) fest
         (lib.mkIf (!cfg.router) {
@@ -53,7 +64,7 @@ in
         # Falls wir Router sind, legen wir die gesamte Konfiguration statisch fest    
         (lib.mkIf cfg.router {
           domains = [ "psa-team06.cit.tum.de" ];
-          dns = [ "192.168.6.1" ];
+          dns = [ "192.168.6.1" "1.1.1.1" "8.8.8.8" ]; # Router VM for DNS + Cloudflare & Google Fallback
           address = [
             "192.168.6.1/24" # Team Subnet
             # Restliche Inter-PSA Subnets
@@ -78,8 +89,8 @@ in
            { routeConfig = { Destination = "192.168.9.0/24"; Gateway = "192.168.96.9"; }; }
             { routeConfig = { Destination = "192.168.10.0/24"; Gateway = "192.168.106.10"; }; }
           ];
-          # IPv4 (&IPv6) Forwarding aktivieren
-          networkConfig.IPForward = "yes";
+          # IPv4 Forwarding aktivieren
+          networkConfig.IPForward = true;
         })
       ];
     };
