@@ -63,9 +63,20 @@
 
   nix = {
     settings = {
-      experimental-features = ["nix-command" "flakes"];
-      auto-optimise-store = true; # Gets rid of duplicate files in the store
+      # Enable Flakes and new nix cmd
+      experimental-features = [ "nix-command" "flakes" ];
+      # Give anyone with root access special permissions when talking to the Nix daemon
+      trusted-users = [ "root" "@wheel"];
     };
+
+    # Periodically gets rid of duplicate files in the store
+    optimise.automatic = true;
+    # Don't remove any dependencies needed to build alive (non-GC'd) packages
+    extraOptions =
+      ''
+        keep-outputs = true
+        keep-derivations = true
+      '';
       
     # Disable channels
     channel.enable = false;
@@ -89,8 +100,11 @@
     wget
     curlWithGnuTls
     dig
+    htop
     bottom # better top
     gping # graphical ping
+    tcpdump # TCP inspection
+    dhcpdump # DHCP inspection
   ];
 
   # Message of the day - helps newcomers to NixOS

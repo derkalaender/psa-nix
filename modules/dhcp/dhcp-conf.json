@@ -1,12 +1,12 @@
 {
         "Dhcp4": {
 
-                # Gültigkeit eines Lease
-                "valid-lifetime": 300,
+                # Gültigkeit eines Lease (6h)
+                "valid-lifetime": 21600,
                 # Nach wie vielen sec soll neu angefragt werden
-                "renew-timer": 150,
+                // "renew-timer": 150,
                 # Falls renew nicht funktioniert hat
-                "rebind-timer": 240,
+                // "rebind-timer": 240,
 
                 # Auf welchen Interface soll DHCP hören
                 "interfaces-config": {
@@ -24,7 +24,7 @@
 
         "host-reservation-identifiers": [ "hw-address" ],
 
-                # DHCP antwortet nicht, falls angefragte IP nicht verfügbar
+        # DHCP antwortet nicht, falls angefragte IP nicht verfügbar
         "authoritative": false,
 
         "subnet4": [
@@ -92,8 +92,8 @@
                         "always-send": true
                 },
                 {
-                                "name": "domain-name-servers",
-                        "data": "192.168.6.1",
+                        "name": "domain-name-servers",
+                        "data": "192.168.6.1, 1.1.1.1, 8.8.8.8",
                         "always-send": true
                 },
                 {
@@ -106,12 +106,12 @@
                         "name": "classless-static-route",
                         "data": "192.168.0.0/16 - 192.168.6.1",
                         "always-send": true
-                        },
-                        {
-                                "name": "wpad-proxy-url",
-                                "data": "http://pac.lrz.de",
-                                "always-send": true
-                        }
+                },
+                {
+                        "name": "wpad-proxy-url",
+                        "data": "http://pac.lrz.de",
+                        "always-send": true
+                }
         ],
 
                 # Settings für den Logger
