@@ -19,6 +19,7 @@ neko      A       192.168.6.3
 alphonse  A       192.168.6.4
 edward    A       192.168.6.5
 kumo      A       192.168.6.6
+files     A       192.168.6.7
 
 ; Webserver
 www       CNAME   kumo
