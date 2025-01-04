@@ -58,6 +58,24 @@ in
           root = webSite;
         } // sslAttr;
       };
+
+      # Logging
+      commonHttpConfig =
+        ''
+          map $remote_addr $remote_addr_anon {
+            ~(?P<ip>\d+\.\d+\.\d+)\.    $ip.0;
+            default                     0.0.0.0;
+          }
+
+          log_format combined_anon '$remote_addr_anon - $remote_user [$time_local] '
+                              '"$request" $status $body_bytes_sent '
+                              '"$http_referer" "$http_user_agent"';
+
+          # Log Locations spezifizieren
+          # Access Log nimmt unser spezielles Log Format
+          access_log /var/log/nginx/access.log combined_anon;
+          error_log /var/log/nginx/error.log;
+        '';
     };
 
     # Für jeden User wird eine fcgiwrap Service Instanz erzeugt
@@ -144,5 +162,29 @@ in
 
     # IP Adresse hinzufügen
     systemd.network.networks."10-psa".address = [ "192.168.6.69" ];
+
+    # Log Rotation
+    # Default deaktivieren
+    services.logrotate.settings.nginx.enable = lib.mkForce false;
+    # Access Log
+    services.logrotate.settings.nginxaccess = {
+      files = "/var/log/nginx/access.log";
+      frequency = "daily";
+      su = "${config.services.nginx.user} ${config.services.nginx.group}";
+      rotate = 5;
+      compress = true;
+      delaycompress = true;
+      postrotate = "[ ! -f /var/run/nginx/nginx.pid ] || kill -USR1 `cat /var/run/nginx/nginx.pid`";
+    };
+    # Error Log
+    services.logrotate.settings.nginxerror = {
+      files = "/var/log/nginx/error.log";
+      frequency = "daily";
+      su = "${config.services.nginx.user} ${config.services.nginx.group}";
+      rotate = 1;
+      compress = true;
+      delaycompress = true;
+      postrotate = "[ ! -f /var/run/nginx/nginx.pid ] || kill -USR1 `cat /var/run/nginx/nginx.pid`";
+    };
   };
 }
