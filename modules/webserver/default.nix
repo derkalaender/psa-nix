@@ -13,6 +13,15 @@ let
     sslCertificateKey = "/etc/ssl/nginx/private/nginx.key";
     sslCertificate = "/etc/ssl/nginx/nginx.crt";
   };
+
+  # Available script packages
+  scriptPkgs = with pkgs; [ bash perl php ruby python3Minimal ];
+
+  # Execute function for each user(name), returning attrSet
+  forEachUsername = f: builtins.listToAttrs (map f config.psa.users.psa);
+  forEachUser = f: forEachUsername (u:
+    f (builtins.getAttr u config.users.users)
+  );
 in
 {
   options = {
@@ -20,9 +29,22 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # Normalerweise darf Nginx nicht auf Home Ordner lesend zugreifen.
-    # Das machen wir hier rückgängig
-    systemd.services.nginx.serviceConfig.ProtectHome = "read-only";
+    
+    systemd.services = {
+      # Normalerweise darf Nginx nicht auf Home Ordner lesend zugreifen.
+      # Das machen wir hier rückgängig
+      nginx.serviceConfig.ProtectHome = "read-only";
+    }
+    //
+    # fcgiwrap systemd service packages zum path hinzufügen
+    forEachUsername (u:
+      {
+        name = "fcgiwrap-${u}";
+        value = {
+          path = scriptPkgs;
+        };
+      }
+    );
     
     services.nginx = {
       enable = true;
@@ -79,86 +101,70 @@ in
     };
 
     # Für jeden User wird eine fcgiwrap Service Instanz erzeugt
-    services.fcgiwrap.instances = builtins.listToAttrs (map
-      (u:
-        let
-          user = builtins.getAttr u config.users.users;
-        in
-          {
-            name = user.name;
-            value = {
-              process = {
-                user = user.name;
-                group = user.group;
-              };
-              socket = {
-                user = user.name;
-                group = config.services.nginx.group;
-                mode = "0660";
-              };
-            };
-          }
-      )
-      config.psa.users.psa
+    services.fcgiwrap.instances = forEachUser (user:
+      {
+        name = user.name;
+        value = {
+          process = {
+            user = user.name;
+            group = user.group;
+          };
+          socket = {
+            user = user.name;
+            group = config.services.nginx.group;
+            mode = "0660";
+          };
+        };
+      }
     );
 
     # Für jeden User erlauben wir o+x Permissions auf dem Home Directory
-    users.users = builtins.listToAttrs (map
-      (u:
-        {
-          name = u;
-          value = { homeMode = "701"; };
-        }
-      )
-      config.psa.users.psa
+    users.users = forEachUsername (u:
+      {
+        name = u;
+        value = { homeMode = "701"; };
+      }
     );
 
     # Activation Script um automatisch .html-data und .cgi-bin Ordner für jeden User zu erstellen
-    system.activationScripts = builtins.listToAttrs (map
-      (u:
-        let
-          user = builtins.getAttr u config.users.users;
-        in
-          {
-            name = "webserver-user-${user.name}";
-            value = {
-              text =
-                ''
-                  html_data_dir="${user.home}/.html-data"
-                  cgi_bin_dir="${user.home}/.cgi-bin"
+    system.activationScripts = forEachUser (user:
+      {
+        name = "webserver-user-${user.name}";
+        value = {
+          text =
+            ''
+              html_data_dir="${user.home}/.html-data"
+              cgi_bin_dir="${user.home}/.cgi-bin"
 
-                  if [ ! -d "$html_data_dir" ]; then
-                    mkdir -p "$html_data_dir"
-                    echo "👋 Hello statically from ${user.name}" > "$html_data_dir/index.html"
-                    chown -R ${user.name}:${user.group} "$html_data_dir"
-                  fi
+              if [ ! -d "$html_data_dir" ]; then
+                mkdir -p "$html_data_dir"
+                echo "👋 Hello statically from ${user.name}" > "$html_data_dir/index.html"
+                chown -R ${user.name}:${user.group} "$html_data_dir"
+              fi
 
-                  if [ ! -d "$cgi_bin_dir" ]; then
-                    mkdir -p "$cgi_bin_dir"
-                    cat > "$cgi_bin_dir/index.sh" << 'EOF'
-                  #!/run/current-system/sw/bin/bash
-                  echo "Content-type: text/html"
-                  echo ""
-                  echo "👋 Hello dynamically from $(whoami)"
-                  EOF
-                    chmod +x "$cgi_bin_dir/index.sh"
-                    chown -R ${user.name}:${user.group} "$cgi_bin_dir"
-                  fi
-                '';
-              deps = [ "users" ];
-            };
-          }
-      )
-      config.psa.users.psa
+              if [ ! -d "$cgi_bin_dir" ]; then
+                mkdir -p "$cgi_bin_dir"
+                cat > "$cgi_bin_dir/index.sh" << 'EOF'
+              #!/usr/bin/env bash
+              echo "Content-type: text/html"
+              echo ""
+              echo "👋 Hello dynamically from $(whoami)"
+              echo "We also support: php (php-cgi), perl, python3, ruby. Just change the shebang!"
+              EOF
+                chmod +x "$cgi_bin_dir/index.sh"
+                chown -R ${user.name}:${user.group} "$cgi_bin_dir"
+              fi
+            '';
+          deps = [ "users" ];
+        };
+      }
     );
 
-    environment.systemPackages = with pkgs; [
-      bash
-      perl
-      php
-      ruby
-      python3Minimal  
-    ];
+    # Script Packages installieren
+    environment.systemPackages = scriptPkgs;
+
+    # Allow commonly known script shebangs
+    services.envfs.enable = true;
 
     # IP Adresse hinzufügen
     systemd.network.networks."10-psa".address = [ "192.168.6.69" ];
