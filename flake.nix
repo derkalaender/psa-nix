@@ -51,6 +51,16 @@
       	  ./vms/kumo.nix	
       	];
       };
+
+      ldap = {
+      	# ssh port
+      	deployment.targetPort = 60608;
+
+      	#import configuration
+      	imports = [
+      	  ./vms/ldap.nix	
+      	];
+      };
     };
   };
 }

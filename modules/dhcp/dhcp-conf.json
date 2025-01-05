@@ -77,6 +77,12 @@
                         	    "ip-address": "192.168.6.7",
                         	    "hostname": "vmpsateam06-07"
                         },
+                        // VM8
+                        {
+                        	    "hw-address": "08:00:27:3a:b7:15",
+                        	    "ip-address": "192.168.6.8",
+                        	    "hostname": "vmpsateam06-08"
+                        },
                 ]
                 }
         ],
