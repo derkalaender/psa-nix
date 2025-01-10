@@ -7,6 +7,8 @@ let
   baseDN = "dc=team06,dc=psa,dc=cit,dc=tum,dc=de";
   rootName = "admin";
   rootPw = "{SSHA}REHwlTzaAcFssX+EYQwJ9rp0w9M80QMN";
+
+  studentLDIF = ./student.ldif;
 in
 {
   options = {
@@ -41,6 +43,13 @@ in
           "cn=schema".includes = [
             # required
             "${pkgs.openldap}/etc/schema/core.ldif"
+            # apparently required for nis to work
+            "${pkgs.openldap}/etc/schema/cosine.ldif"
+            "${pkgs.openldap}/etc/schema/inetorgperson.ldif"
+            # posixAccount & posixGroup
+            "${pkgs.openldap}/etc/schema/nis.ldif"
+            # our own schema
+            #studentLDIF
           ];
 
           # Database

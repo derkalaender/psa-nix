@@ -1,0 +1,45 @@
+dn: cn=student,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: student
+#
+# Attribute definitions
+#
+olcAttributeTypes: ( 2.25.86903029773847608291162177362021851782.1
+  NAME 'matriculationnumber'
+  DESC 'Matriculation number (10 digits)'
+  EQUALITY numericStringMatch
+  SUBSTR numericStringSubstringsMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.36{10}
+  SINGLE-VALUE )
+olcAttributeTypes: ( 2.25.86903029773847608291162177362021851782.2
+  NAME 'birthdate'
+  DESC 'Date of birth (YYYY-MM-DD)'
+  EQUALITY caseExactMatch
+  ORDERING caseExactOrderingMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{10}
+  SINGLE-VALUE )
+olcAttributeTypes: ( 2.25.86903029773847608291162177362021851782.3
+  NAME 'birthplace'
+  DESC 'Place of birth'
+  EQUALITY caseIgnoreMatch
+  SUP name
+  SINGLE-VALUE )
+olcAttributeTypes: ( 2.25.86903029773847608291162177362021851782.4
+  NAME 'nationality'
+  DESC 'Nationality'
+  SUP name )
+olcAttributeTypes: ( 2.25.86903029773847608291162177362021851782.5
+  NAME 'sex'
+  DESC 'Sex (e.g., m, f, or o)'
+  EQUALITY caseIgnoreMatch
+  SYNTAX 1.3.6.1.4.1.1466.115.121.1.15{1}
+  SINGLE-VALUE )
+#
+# ObjectClass definitions
+#
+olcObjectClasses: ( 2.25.86903029773847608291162177362021851782.6
+  NAME 'student'
+  DESC 'Student object class with specific attributes'
+  SUP top AUXILIARY
+  MUST ( matriculationnumber $ birthdate $ birthplace )
+  MAY ( nationality $ sex ) )
