@@ -10,7 +10,7 @@ let
   # Gemeine SSL Attribute
   sslAttr = {
     forceSSL = true; # SSL redirect
-    sslCertificateKey = "/etc/ssl/nginx/private/nginx.key";
+    sslCertificateKey = "/etc/ssl/nginx/nginx.key";
     sslCertificate = "/etc/ssl/nginx/nginx.crt";
   };
 

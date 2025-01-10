@@ -1,3 +1,4 @@
+
 { config, lib, pkgs, ... }:
 let
   cfg = config.psa.ldap;
@@ -17,7 +18,7 @@ in
       enable = true;
 
       # Only allow secure connections
-      urlList = [ "ldapi:///" "ldap:///" "ldaps:///" ];
+      urlList = [ "ldapi:///" "ldaps:///" ];
 
       # Recursive configuration in on-line configuration (OLC) format
       # Starts with dn: cn=config
@@ -28,6 +29,12 @@ in
         attrs = {
           # activate more verbose logging
           olcLogLevel = [ "stats" "conns" "config" "acl" ];
+
+          # SSL
+          olcTLSCertificateFile = "/etc/ssl/openldap/slapd.crt";
+          olcTLSCertificateKeyFile = "/etc/ssl/openldap/slapd.key";
+          olcTLSProtocolMin = "3.3";
+          olcTLSCipherSuite = "DEFAULT:!kRSA:!kDHE";
         };
 
         children = {
