@@ -49,7 +49,7 @@ in
             # posixAccount & posixGroup
             "${pkgs.openldap}/etc/schema/nis.ldif"
             # our own schema
-            #studentLDIF
+            studentLDIF
           ];
 
           # Database
