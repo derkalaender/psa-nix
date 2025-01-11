@@ -42,4 +42,4 @@ olcObjectClasses: ( 2.25.86903029773847608291162177362021851782.6
   DESC 'Auxiliary object class with extra attributes'
   SUP top AUXILIARY
   MUST ( matriculationnumber $ birthdate $ birthplace )
-  MAY ( nationality $ sex ) )
+  MAY ( nationality $ sex $ givenName $ sn $ street $ postalCode $ l $ telephoneNumber ) )
