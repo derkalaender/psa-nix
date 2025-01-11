@@ -84,6 +84,9 @@
     # This way, we can run things like `nix run nixpkgs#cowsay` or `nix run unstable#cowsay`
     registry = lib.mapAttrs (_: flake: {inherit flake;}) inputs;
     nixPath = lib.mapAttrsToList (name: _: "${name}=flake:${name}") inputs;
+
+    # Use newer version of nix
+    package = inputs.unstable.legacyPackages."x86_64-linux".nix;
   };
 
   # Correct timezone
