@@ -8,7 +8,7 @@ let
   rootName = "admin";
   rootPw = "{SSHA}REHwlTzaAcFssX+EYQwJ9rp0w9M80QMN";
 
-  studentLDIF = ./student.ldif;
+  customLDIF = ./custom.ldif;
 in
 {
   options = {
@@ -49,7 +49,7 @@ in
             # posixAccount & posixGroup
             "${pkgs.openldap}/etc/schema/nis.ldif"
             # our own schema
-            studentLDIF
+            customLDIF
           ];
 
           # Database

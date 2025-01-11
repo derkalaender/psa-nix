@@ -1,6 +1,6 @@
-dn: cn=student,cn=schema,cn=config
+dn: cn=custom,cn=schema,cn=config
 objectClass: olcSchemaConfig
-cn: student
+cn: custom
 #
 # Attribute definitions
 #
@@ -38,8 +38,8 @@ olcAttributeTypes: ( 2.25.86903029773847608291162177362021851782.5
 # ObjectClass definitions
 #
 olcObjectClasses: ( 2.25.86903029773847608291162177362021851782.6
-  NAME 'student'
-  DESC 'Student object class with specific attributes'
+  NAME 'auxPerson'
+  DESC 'Auxiliary object class with extra attributes'
   SUP top AUXILIARY
   MUST ( matriculationnumber $ birthdate $ birthplace )
   MAY ( nationality $ sex ) )
