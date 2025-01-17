@@ -1,4 +1,8 @@
-{config, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   cfg = config.psa;
 
   idleTimeout = "60s"; # how long a mount should be kept around after it's last use
@@ -22,4 +26,10 @@ in {
       };
     }
   );
+
+  # SAMBA packages
+  environment.systemPackages = with pkgs; [
+    samba
+    cifs-utils
+  ];
 }
