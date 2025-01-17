@@ -136,37 +136,38 @@ in {
     );
 
     # Activation Script um automatisch .html-data und .cgi-bin Ordner für jeden User zu erstellen
-    system.activationScripts = forEachUser (
-      user: {
-        name = "webserver-user-${user.name}";
-        value = {
-          text = ''
-            html_data_dir="${user.home}/.html-data"
-            cgi_bin_dir="${user.home}/.cgi-bin"
+    # DEACTIVATED because we may not be able to access remote home directories
+    # system.activationScripts = forEachUser (
+    #   user: {
+    #     name = "webserver-user-${user.name}";
+    #     value = {
+    #       text = ''
+    #         html_data_dir="${user.home}/.html-data"
+    #         cgi_bin_dir="${user.home}/.cgi-bin"
 
-            if [ ! -d "$html_data_dir" ]; then
-              mkdir -p "$html_data_dir"
-              echo "👋 Hello statically from ${user.name}" > "$html_data_dir/index.html"
-              chown -R ${user.name}:${user.group} "$html_data_dir"
-            fi
+    #         if [ ! -d "$html_data_dir" ]; then
+    #           mkdir -p "$html_data_dir"
+    #           echo "👋 Hello statically from ${user.name}" > "$html_data_dir/index.html"
+    #           chown -R ${user.name}:${user.group} "$html_data_dir"
+    #         fi
 
-            if [ ! -d "$cgi_bin_dir" ]; then
-              mkdir -p "$cgi_bin_dir"
-              cat > "$cgi_bin_dir/index.sh" << 'EOF'
-            #!/usr/bin/env bash
-            echo "Content-type: text/html"
-            echo ""
-            echo "👋 Hello dynamically from $(whoami)"
-            echo "We also support: php (php-cgi), perl, python3, ruby. Just change the shebang!"
-            EOF
-              chmod +x "$cgi_bin_dir/index.sh"
-              chown -R ${user.name}:${user.group} "$cgi_bin_dir"
-            fi
-          '';
-          deps = ["users"];
-        };
-      }
-    );
+    #         if [ ! -d "$cgi_bin_dir" ]; then
+    #           mkdir -p "$cgi_bin_dir"
+    #           cat > "$cgi_bin_dir/index.sh" << 'EOF'
+    #         #!/usr/bin/env bash
+    #         echo "Content-type: text/html"
+    #         echo ""
+    #         echo "👋 Hello dynamically from $(whoami)"
+    #         echo "We also support: php (php-cgi), perl, python3, ruby. Just change the shebang!"
+    #         EOF
+    #           chmod +x "$cgi_bin_dir/index.sh"
+    #           chown -R ${user.name}:${user.group} "$cgi_bin_dir"
+    #         fi
+    #       '';
+    #       deps = ["users"];
+    #     };
+    #   }
+    # );
 
     # Script Packages installieren
     environment.systemPackages = scriptPkgs;
