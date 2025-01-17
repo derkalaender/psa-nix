@@ -10,82 +10,89 @@
 
                 # Auf welchen Interface soll DHCP hören
                 "interfaces-config": {
-                        "interfaces": ["enp0s8/192.168.6.1"],
+                        "interfaces": [
+                                "enp0s8/192.168.6.1"
+                        ],
                         "dhcp-socket-type": "raw"
                 },
 
                 # Lease Datenbank 
                 "lease-database": {
-                "type": "memfile",
-                "persist": true,
-                "name": "/var/lib/kea/dhcp4.leases",
-                "lfc-interval": 1800
-        },
-
-        "host-reservation-identifiers": [ "hw-address" ],
+                        "type": "memfile",
+                        "persist": true,
+                        "name": "/var/lib/kea/dhcp4.leases",
+                        "lfc-interval": 1800
+                },
+                "host-reservation-identifiers": [
+                        "hw-address"
+                ],
 
         # DHCP antwortet nicht, falls angefragte IP nicht verfügbar
         "authoritative": false,
-
-        "subnet4": [
-                {
-                "id": 1,
-                "subnet": "192.168.6.0/24",
-                "pools": [],
-                "reservations-out-of-pool": true,
-
-                "reservations" : [
-                        // Router - VM1
+                "subnet4": [
                         {
-                                "hw-address": "08:00:27:d3:84:78",
-                                "ip-address": "192.168.6.1",
-                                "hostname": "vmpsateam06-01"
-                        },
-                        // VM2
-                        {
-                                "hw-address": "08:00:27:6c:12:0c",
-                                "ip-address": "192.168.6.2",
-                                "hostname": "vmpsateam06-02"
-                        },
-                        // VM3
-                        {
-                                "hw-address": "08:00:27:f0:2b:bc",
-                                "ip-address": "192.168.6.3",
-                                "hostname": "vmpsateam06-03"
-                        },
-                        // VM4
-                        {
-                                "hw-address": "08:00:27:e6:0d:1d",
-                                "ip-address": "192.168.6.4",
-                                "hostname": "vmpsateam06-04"
-                        },
-                        // VM5
-                        {
-                        	    "hw-address": "08:00:27:10:20:f5",
-                        	    "ip-address": "192.168.6.5",
-                        	    "hostname": "vmpsateam06-05"
-                        },
-                        // VM6
-                        {
-                        	    "hw-address": "08:00:27:2a:c4:6c",
-                        	    "ip-address": "192.168.6.6",
-                        	    "hostname": "vmpsateam06-06"
-                        },
-                        // VM7
-                        {
-                        	    "hw-address": "08:00:27:c9:de:02",
-                        	    "ip-address": "192.168.6.7",
-                        	    "hostname": "vmpsateam06-07"
-                        },
-                        // VM8
-                        {
-                        	    "hw-address": "08:00:27:3a:b7:15",
-                        	    "ip-address": "192.168.6.8",
-                        	    "hostname": "vmpsateam06-08"
-                        },
-                ]
-                }
-        ],
+                                "id": 1,
+                                "subnet": "192.168.6.0/24",
+                                "pools": [],
+                                "reservations-out-of-pool": true,
+                                "reservations": [
+                                        // Router - VM1
+                                        {
+                                                "hw-address": "08:00:27:d3:84:78",
+                                                "ip-address": "192.168.6.1",
+                                                "hostname": "vmpsateam06-01"
+                                        },
+                                        // VM2
+                                        {
+                                                "hw-address": "08:00:27:6c:12:0c",
+                                                "ip-address": "192.168.6.2",
+                                                "hostname": "vmpsateam06-02"
+                                        },
+                                        // VM3
+                                        {
+                                                "hw-address": "08:00:27:f0:2b:bc",
+                                                "ip-address": "192.168.6.3",
+                                                "hostname": "vmpsateam06-03"
+                                        },
+                                        // VM4
+                                        {
+                                                "hw-address": "08:00:27:e6:0d:1d",
+                                                "ip-address": "192.168.6.4",
+                                                "hostname": "vmpsateam06-04"
+                                        },
+                                        // VM5
+                                        {
+                                                "hw-address": "08:00:27:10:20:f5",
+                                                "ip-address": "192.168.6.5",
+                                                "hostname": "vmpsateam06-05"
+                                        },
+                                        // VM6
+                                        {
+                                                "hw-address": "08:00:27:2a:c4:6c",
+                                                "ip-address": "192.168.6.6",
+                                                "hostname": "vmpsateam06-06"
+                                        },
+                                        // VM7
+                                        {
+                                                "hw-address": "08:00:27:c9:de:02",
+                                                "ip-address": "192.168.6.7",
+                                                "hostname": "vmpsateam06-07"
+                                        },
+                                        // VM8
+                                        {
+                                                "hw-address": "08:00:27:3a:b7:15",
+                                                "ip-address": "192.168.6.8",
+                                                "hostname": "vmpsateam06-08"
+                                        },
+                                        // VM9
+                                        {
+                                                "hw-address": "08:00:27:66:89:55",
+                                                "ip-address": "192.168.6.9",
+                                                "hostname": "vmpsateam06-09"
+                                        },
+                                ]
+                        }
+                ],
 
                 # Kea supportet 252 noch nicht, daher müssen wir eine custom option schreiben
                 "option-def": [
@@ -97,47 +104,46 @@
                 ],
 
                 # DHCP options 
-        "option-data" : [
-                {
-                        "name": "routers",
-                        "data": "192.168.6.1",
-                        "always-send": true
-                },
-                {
-                        "name": "domain-name-servers",
-                        "data": "192.168.6.1",
-                        "always-send": true
-                },
-                {
-                        "name": "domain-name",
-                        "data": "psa-team06.cit.tum.de",
-                        "always-send": true
-                },
-                {
-                        "code": 121,
-                        "name": "classless-static-route",
-                        "data": "192.168.0.0/16 - 192.168.6.1",
-                        "always-send": true
-                },
-                {
-                        "name": "wpad-proxy-url",
-                        "data": "http://pac.lrz.de",
-                        "always-send": true
-                }
-        ],
+        "option-data": [
+                        {
+                                "name": "routers",
+                                "data": "192.168.6.1",
+                                "always-send": true
+                        },
+                        {
+                                "name": "domain-name-servers",
+                                "data": "192.168.6.1",
+                                "always-send": true
+                        },
+                        {
+                                "name": "domain-name",
+                                "data": "psa-team06.cit.tum.de",
+                                "always-send": true
+                        },
+                        {
+                                "code": 121,
+                                "name": "classless-static-route",
+                                "data": "192.168.0.0/16 - 192.168.6.1",
+                                "always-send": true
+                        },
+                        {
+                                "name": "wpad-proxy-url",
+                                "data": "http://pac.lrz.de",
+                                "always-send": true
+                        }
+                ],
 
                 # Settings für den Logger
             "loggers": [
-                {
-                    "name": "kea-dhcp4",
-                    "output-options": [
                         {
-                            "output": "stdout"
+                                "name": "kea-dhcp4",
+                                "output-options": [
+                                        {
+                                                "output": "stdout"
+                                        }
+                                ],
+                                "severity": "DEBUG"
                         }
-                    ],
-                    "severity": "DEBUG"
-                }
-            ]
-
+                ]
         }
 }

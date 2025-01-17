@@ -5,11 +5,15 @@
     colmena.url = "github:zhaofengli/colmena";
   };
 
-  outputs = inputs@{ self, colmena, nixpkgs, ... }:
-  {
+  outputs = inputs @ {
+    self,
+    colmena,
+    nixpkgs,
+    ...
+  }: {
     # https://github.com/zhaofengli/colmena/pull/228
     colmenaHive = colmena.lib.makeHive self.outputs.colmena;
-    colmena = {  
+    colmena = {
       meta = {
         # need to pin nixpkgs for colmena
         nixpkgs = import nixpkgs {
@@ -43,23 +47,33 @@
       };
 
       kumo = {
-      	# ssh port
-      	deployment.targetPort = 60606;
+        # ssh port
+        deployment.targetPort = 60606;
 
-      	#import configuration
-      	imports = [
-      	  ./vms/kumo.nix	
-      	];
+        #import configuration
+        imports = [
+          ./vms/kumo.nix
+        ];
       };
 
       ldap = {
-      	# ssh port
-      	deployment.targetPort = 60608;
+        # ssh port
+        deployment.targetPort = 60608;
 
-      	#import configuration
-      	imports = [
-      	  ./vms/ldap.nix	
-      	];
+        #import configuration
+        imports = [
+          ./vms/ldap.nix
+        ];
+      };
+
+      meiru = {
+        # ssh port
+        deployment.targetPort = 60609;
+
+        #import configuration
+        imports = [
+          ./vms/meiru.nix
+        ];
       };
     };
   };
