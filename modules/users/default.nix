@@ -1,11 +1,9 @@
-{ lib, config, ... }:
-
-with lib;
-
-let
-  # Get the users array from the users.toml file
-  users = (trivial.importTOML ./users.toml).users;
-
+{
+  lib,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.psa;
 
   # Create a single user from an element of the users TOML array.
@@ -17,14 +15,36 @@ let
       isNormalUser = true;
       uid = user.uid;
       group = "psa";
-      openssh.authorizedKeys.keys = lists.optional (user.ssh_key != "") user.ssh_key; # create a list with the key if it exists, empty list otherwise
+      openssh.authorizedKeys.keys = singleton user.sshKey;
     };
   };
-in
-{
+in {
   options = {
     psa.users.psa = mkOption {
-      type = types.listOf types.str;
+      type = with types;
+        listOf (submodule {
+          options = {
+            username = mkOption {
+              type = str;
+              description = "Username of the user";
+            };
+            uid = mkOption {
+              type = int;
+              description = "UID of the user";
+            };
+            sshKey = mkOption {
+              type = nullOr str;
+              default = null;
+              description = "The user's SSH public key";
+            };
+            filemount = mkOption {
+              type = nullOr str;
+              default = null;
+              description = "The user's filemount";
+            };
+          };
+        });
+      default = [];
       description = "PSA users";
     };
   };
@@ -34,11 +54,11 @@ in
     users.groups.psa = {
       gid = 1000;
     };
-    
-    # Create the users by mapping the TOML users array through the mkUser function and then converting it to an attribute set
-    users.users = builtins.listToAttrs (map mkUser users);
 
-    # PSA User für andere Module bereitstellen
-    psa.users.psa = map (u: u.username) users;
+    # Create the users by mapping the TOML users array through the mkUser function and then converting it to an attribute set
+    users.users = builtins.listToAttrs (map mkUser cfg.users.psa);
+
+    # PSA User für andere Module bereitstellen, basierend auf TOML-Datei
+    psa.users.psa = (trivial.importTOML ./users.toml).users;
   };
 }
