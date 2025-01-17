@@ -75,6 +75,16 @@
           ./vms/meiru.nix
         ];
       };
+
+      karasu = {
+        # ssh port
+        deployment.targetPort = 60610;
+
+        #import configuration
+        imports = [
+          ./vms/karasu.nix
+        ];
+      };
     };
   };
 }
