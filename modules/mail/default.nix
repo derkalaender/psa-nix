@@ -18,8 +18,8 @@ in {
       enableHeaderChecks = true;
       headerChecks = [
         {
-          pattern = "/^From:(.*)@.+?\\.psa-team(\\d+)\\.cit\\.tum\\.de$/";
-          action = "REDIRECT ''${1}@psa-team''${2}.cit.tum.de";
+          pattern = "/^From:(.*)@.+?\\.psa-team(\\d+)\\.cit\\.tum\\.de/";
+          action = "REPLACE From:\${1}@psa-team\${2}.cit.tum.de";
         }
       ];
     };
