@@ -27,3 +27,6 @@ karasu     A       192.168.6.10
 ; Webserver
 www        CNAME   kumo
 web        A       192.168.6.69
+
+; Mail
+@          MX  10  meiru
