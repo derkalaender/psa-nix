@@ -111,7 +111,11 @@
     gping # graphical ping
     tcpdump # TCP inspection
     dhcpdump # DHCP inspection
+    python3
   ];
+
+  # Dynamic linking compat
+  programs.nix-ld.enable = true;
 
   # Message of the day - helps newcomers to NixOS
   users.motd = ''
@@ -133,6 +137,9 @@
     sshd.showMotd = true;
     login.showMotd = true;
   };
+
+  # Enable LDAP login per default
+  psa.ldap.client.enable = true;
 
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.
