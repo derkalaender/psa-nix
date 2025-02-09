@@ -91,45 +91,39 @@ in {
             olcDbDirectory = "/var/lib/openldap/data";
 
             olcAccess = [
+              # for testing: allow anyone to read anything
+              ''
+                {-1}to *
+                 by * read
+                 by * break
+              ''
               # linux root user: full access
               ''
                 {0}to *
                  by dn.exact=uidNumber=0+gidNumber=0,cn=peercred,cn=external,cn=auth manage
                  by * break
               ''
-              # pam: read everything
+              # # anyone: use searching functionality
+              # ''
+              #   {1}to attrs=entry
+              #    by * search break
+              # ''
+              # # anon: read UIDs
+              # ''
+              #   {2}to uid
+              #    by anonymous read
+              #    by * break
+              # ''
+              # users: write to various of their own properties
               ''
-                {1}to *
-                 by * read
-                 by * break
-              ''
-              # anon: search for UIDs
-              ''
-                {2}to dn.children="ou=users,${baseDN}" attrs=entry,uid
-                 by anonymous read
-                 by * break
-              ''
-              # anon: 'entry' to enable searching, 'userPassword' to enable login, 'uid' to search for UIDs
-              ''
-                {3}to dn.base="${baseDN}" attrs=entry
-                 by anonymous auth
-                 by * break
-              ''
-              ''
-                {4}to *
-                 by anonymous auth
-                 by * break
+                {3}to attrs=cn,givenName,sn,nationality,street,postalCode,l,telephoneNumber,loginShell,userPassword,shadowLastChange
+                 by self write
+                 by * none
               ''
               # users: read all their own properties
               ''
-                {5}to dn.children="ou=users,${baseDN}"
+                {4}to *
                  by self read
-                 by * break
-              ''
-              # users: write to various of their own properties: common name, shell, password related entries
-              ''
-                {6}to dn.children="ou=users,${baseDN}" attrs=cn,loginShell,userPassword,shadowLastChange
-                 by self write
                  by * none
               ''
             ];

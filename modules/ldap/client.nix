@@ -4,6 +4,8 @@
   ...
 }: let
   cfg = config.psa.ldap;
+
+  sssdConf = builtins.readFile ./sssd.conf;
 in {
   options = {
     psa.ldap.client = {
@@ -12,16 +14,15 @@ in {
   };
 
   config = lib.mkIf cfg.client.enable {
-    users.ldap = {
+    # System Security Services Daemon (SSSD) configuration
+    services.sssd = {
       enable = true;
-      daemon.enable = true; # better performance
-      base = cfg.server.baseDN;
-      server = "ldap://${cfg.server.serverDomain}";
-      useTLS = false;
-      # Request, but don't validate the server's certificate
-      # extraConfig = ''
-      #   tls_reqcert allow
-      # '';
+      config = sssdConf;
+    };
+
+    security.pam.services.login = {
+      sssdStrictAccess = true;
+      unixAuth = false;
     };
   };
 }

@@ -24,10 +24,10 @@
   # Nur mit SSH Key Anmeldung erlauben
   services.openssh.settings = {
     PermitRootLogin = "prohibit-password";
-    PasswordAuthentication = false;
+    PasswordAuthentication = true;
   };
 
-  users.mutableUsers = false;
+  users.mutableUsers = true;
 
   # Eigenen User erstellen mit Root-Rechten (wheel Gruppe)
   users.users.ge59pib = {
