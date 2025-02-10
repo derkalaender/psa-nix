@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   cfg = config.psa;
@@ -11,21 +12,30 @@
   usersWithFilemount = builtins.filter (user: !(isNull user.filemount)) cfg.users.psa;
   forEachUserPath = f: builtins.listToAttrs (map f usersWithFilemount);
 in {
-  fileSystems = forEachUserPath (
-    user: {
-      name = "/home/${user.username}";
-      value = {
-        device = user.filemount;
+  fileSystems = lib.mkMerge [
+    (forEachUserPath (
+      user: {
+        name = "/home/${user.username}";
+        value = {
+          device = user.filemount;
+          fsType = "nfs";
+          options = [
+            "noauto"
+            "x-systemd.automount"
+            "x-systemd.idle-timeout=${idleTimeout}"
+            "x-systemd.mount-timeout=${failTimeout}"
+          ];
+        };
+      }
+    ))
+
+    {
+      "/oldhomes" = {
+        device = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/home/";
         fsType = "nfs";
-        options = [
-          "x-systemd.automount"
-          "noauto"
-          "x-systemd.idle-timeout=${idleTimeout}"
-          "x-systemd.mount-timeout=${failTimeout}"
-        ];
       };
     }
-  );
+  ];
 
   # SAMBA packages
   environment.systemPackages = with pkgs; [

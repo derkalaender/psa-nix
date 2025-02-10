@@ -6,6 +6,11 @@
   cfg = config.psa.ldap;
 
   sssdConf = builtins.readFile ./sssd.conf;
+
+  pamConf = {
+    sssdStrictAccess = false;
+    unixAuth = lib.mkForce false;
+  };
 in {
   options = {
     psa.ldap.client = {
@@ -18,11 +23,16 @@ in {
     services.sssd = {
       enable = true;
       config = sssdConf;
+      environmentFile = "/etc/secrets/sssd.env";
     };
 
-    security.pam.services.login = {
-      sssdStrictAccess = true;
-      unixAuth = false;
+    security.pam.services = {
+      # sshd = pamConf;
+      passwd = pamConf;
+      chpasswd = pamConf;
+      login = pamConf;
+      # su = pamConf;
+      # sudo = pamConf;
     };
   };
 }

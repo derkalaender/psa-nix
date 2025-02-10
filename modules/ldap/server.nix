@@ -52,7 +52,7 @@ in {
       settings = {
         attrs = {
           # activate more verbose logging
-          olcLogLevel = ["stats" "conns" "config" "acl"];
+          olcLogLevel = ["stats2" "config" "acl"];
 
           # SSL
           olcTLSCertificateFile = ssl.crtFile;
@@ -91,38 +91,39 @@ in {
             olcDbDirectory = "/var/lib/openldap/data";
 
             olcAccess = [
-              # for testing: allow anyone to read anything
-              ''
-                {-1}to *
-                 by * read
-                 by * break
-              ''
               # linux root user: full access
               ''
                 {0}to *
                  by dn.exact=uidNumber=0+gidNumber=0,cn=peercred,cn=external,cn=auth manage
                  by * break
               ''
-              # # anyone: use searching functionality
-              # ''
-              #   {1}to attrs=entry
-              #    by * search break
-              # ''
-              # # anon: read UIDs
-              # ''
-              #   {2}to uid
-              #    by anonymous read
-              #    by * break
-              # ''
-              # users: write to various of their own properties
+              # sssd: read everything, needed for e.g. password management
+              # This is not really fine-grained, but we trust sssd because we trust PAM
               ''
-                {3}to attrs=cn,givenName,sn,nationality,street,postalCode,l,telephoneNumber,loginShell,userPassword,shadowLastChange
+                {1}to *
+                 by dn.exact=cn=sssd,${baseDN} read
+                 by * break
+              ''
+              # anon: allow password auth (needed to bind anything)
+              ''
+                {2}to attrs=userPassword
+                 by anonymous auth
+                 by * break
+              ''
+              # anon: allow searching for UIDs
+              ''
+                {3}to attrs=entry,uid
+                 by anonymous read
+                 by * break
+              ''
+              # self: allow writing certain properties (e.g. needed for passwd) and read the rest
+              ''
+                {4}to attrs=cn,givenName,sn,sex,nationality,street,postalCode,l,telephoneNumber,loginShell,userPassword,shadowLastChange
                  by self write
                  by * none
               ''
-              # users: read all their own properties
               ''
-                {4}to *
+                {5}to *
                  by self read
                  by * none
               ''
