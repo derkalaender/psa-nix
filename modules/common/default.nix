@@ -27,44 +27,6 @@
     PasswordAuthentication = true;
   };
 
-  users.mutableUsers = true;
-
-  # Eigenen User erstellen mit Root-Rechten (wheel Gruppe)
-  users.users.ge59pib = {
-    isNormalUser = true;
-    extraGroups = ["wheel"];
-
-    hashedPassword = "$y$j9T$nCKBejo5cQYZ4Z2GHtCsC0$Wx0.MRxfMaT4xBNwhp/1y/OlSFPGmfO5OtfDVOUWs09";
-
-    # SSH Public-Key
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINTyrsqSn9oAlqyThh1VoIqLoOzNV5a9IAeERC09fAFU hey+ssh-2024-10@mrvnbr.de"
-    ];
-  };
-
-  users.users.ge65peq = {
-    isNormalUser = true;
-    extraGroups = ["wheel"];
-
-    hashedPassword = "$y$j9T$ozWdR.RlFFi9Nb/VNvx2g.$XA8Y3YZuLbI8t943rRWkkP5oxuYXId9FT5TcHK8v1.3";
-
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBKmGZBpo2o5HMwSCOLVuznuaZ0ZdJgedaRyTYFxJzEK christian.sommer@tum.de"
-    ];
-  };
-
-  users.users.root = {
-    hashedPassword = "$y$j9T$K1v9o13z11.rJz8LD7DO61$WGlzE.cXHjOvnSwJDMWcCvcTtEpwS7juyQ.vRWDgPS5";
-
-    # SSH Public-Key
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA7qBxOWgSHhT1ZW5c/mNnOsPl5JT/5B3Yrmz1LjXx0Z fileserver"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINTyrsqSn9oAlqyThh1VoIqLoOzNV5a9IAeERC09fAFU hey+ssh-2024-10@mrvnbr.de"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBKmGZBpo2o5HMwSCOLVuznuaZ0ZdJgedaRyTYFxJzEK christian.sommer@tum.de"
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1bL8aC20ERDdJE2NqzIBvs8zXmCbFZ7fh5qXyqGNF7XfdfbsPBfQBSeJoncVfTJRFNYF4E+1Me918QMIpqa9XR4nJYOdOzff1JLYp1Z1X28Dx3//aOir8ziPCvGZShFDXoxLp6MNFIiEpI/IEW9OqxLhKj6YWVEDwK1ons7+pXnPM6Nd9lPd2UeqWWRpuuf9sa2AimQ1ZBJlnp7xHFTxvxdWMkTu6aH0j+aTT1w1+UDN2laS4nsmAJOO2KjeZq6xpbdmj9cjuxBJtM3Dsoq4ZJGdzez7XYhvCTQoQFl/5G0+4FBZeAgL/4ov12flGijZIIaXvmMBkLZRYg3E2m1Rp Praktikum Systemadministration"
-    ];
-  };
-
   nix = {
     settings = {
       # Enable Flakes and new nix cmd
@@ -112,6 +74,7 @@
     tcpdump # TCP inspection
     dhcpdump # DHCP inspection
     python3
+    openssl
   ];
 
   # Dynamic linking compat
@@ -132,6 +95,13 @@
     - Add a package permanently to your profile (not recommended): nix profile install nixpkgs#cowsay
 
     If you have any questions, check out our wiki pages or ask!
+
+    Note to PSA users:
+    - Your old home directories are still available under /oldhome/<username>.
+    - You can find your initial login password under /oldhome/<username>/LDAP_PASSWORD and change it with "passwd".
+    - You can find your certificate under /oldhome/<username>/LDAP_CERTIFICATE.key
+
+    Others: Find the same files under your normal home directory.
   '';
   security.pam.services = {
     sshd.showMotd = true;

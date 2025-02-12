@@ -6,11 +6,6 @@
   cfg = config.psa.ldap;
 
   sssdConf = builtins.readFile ./sssd.conf;
-
-  pamConf = {
-    sssdStrictAccess = false;
-    unixAuth = lib.mkForce false;
-  };
 in {
   options = {
     psa.ldap.client = {
@@ -26,13 +21,12 @@ in {
       environmentFile = "/etc/secrets/sssd.env";
     };
 
-    security.pam.services = {
-      # sshd = pamConf;
-      passwd = pamConf;
-      chpasswd = pamConf;
-      login = pamConf;
-      # su = pamConf;
-      # sudo = pamConf;
-    };
+    # LDAP entries reference /bin/bash
+    # This doesn't exist in NixOS, instead its under /run/current-system/sw/bin/bash
+    # This symlink fixes sshd login
+    # Other shells might need similar treatment if used
+    systemd.tmpfiles.rules = [
+      "L /bin/bash - - - - /run/current-system/sw/bin/bash"
+    ];
   };
 }

@@ -98,32 +98,38 @@ in {
                  by * break
               ''
               # sssd: read everything, needed for e.g. password management
-              # This is not really fine-grained, but we trust sssd because we trust PAM
               ''
                 {1}to *
                  by dn.exact=cn=sssd,${baseDN} read
                  by * break
               ''
-              # anon: allow password auth (needed to bind anything)
+              # userPassword is needed for bind and self can change it (e.g. passwd)
               ''
                 {2}to attrs=userPassword
                  by anonymous auth
-                 by * break
-              ''
-              # anon: allow searching for UIDs
-              ''
-                {3}to attrs=entry,uid
-                 by anonymous read
-                 by * break
-              ''
-              # self: allow writing certain properties (e.g. needed for passwd) and read the rest
-              ''
-                {4}to attrs=cn,givenName,sn,sex,nationality,street,postalCode,l,telephoneNumber,loginShell,userPassword,shadowLastChange
                  by self write
                  by * none
               ''
+              # allow anyone to search for UIDs
               ''
-                {5}to *
+                {3}to attrs=entry,uid
+                 by * read
+              ''
+              # allow self to change certain other properties if they want
+              ''
+                {4}to attrs=cn,givenName,sn,sex,nationality,street,postalCode,l,telephoneNumber
+                 by self write
+                 by * none
+              ''
+              # allow authenticated users to read each others certificates
+              ''
+                {5}to attrs=userCertificate
+                 by users read
+                 by * none
+              ''
+              # all other properties may only be red by oneself
+              ''
+                {6}to *
                  by self read
                  by * none
               ''

@@ -30,7 +30,7 @@ in {
     ))
 
     {
-      "/oldhomes" = {
+      "/oldhome" = {
         device = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/home/";
         fsType = "nfs";
       };
