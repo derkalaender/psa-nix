@@ -21,13 +21,8 @@
   # Available script packages
   scriptPkgs = with pkgs; [bash perl php ruby python3Minimal];
 
-  # Execute function for each user(name), returning attrSet
-  forEachUsername = f: builtins.listToAttrs (map f (map (user: user.username) config.psa.users.psa));
-  forEachUser = f:
-    forEachUsername (
-      u:
-        f (builtins.getAttr u config.users.users)
-    );
+  # Execute function for each user, returning attrSet
+  forEachUser = f: builtins.listToAttrs (map f (config.psa.users.psa ++ config.psa.users.csv));
 in {
   options = {
     psa.webserver.enable = lib.mkEnableOption "nginx Webserver";
@@ -42,9 +37,9 @@ in {
       }
       //
       # fcgiwrap systemd service packages zum path hinzufügen
-      forEachUsername (
+      forEachUser (
         u: {
-          name = "fcgiwrap-${u}";
+          name = "fcgiwrap-${u.username}";
           value = {
             path = scriptPkgs;
           };
@@ -111,15 +106,15 @@ in {
 
     # Für jeden User wird eine fcgiwrap Service Instanz erzeugt
     services.fcgiwrap.instances = forEachUser (
-      user: {
-        name = user.name;
+      u: {
+        name = u.username;
         value = {
           process = {
-            user = user.name;
-            group = user.group;
+            user = u.username;
+            group = "psa";
           };
           socket = {
-            user = user.name;
+            user = u.username;
             group = config.services.nginx.group;
             mode = "0660";
           };
@@ -127,44 +122,60 @@ in {
       }
     );
 
-    # Für jeden User erlauben wir o+x Permissions auf dem Home Directory
-    users.users = forEachUsername (
+    # Each fcgiwrap socket needs have "nss-user-lookup.target" as target
+    # Otherwise race condition: might start too early and LDAP users are not available yet
+    systemd.sockets = forEachUser (
       u: {
-        name = u;
-        value = {homeMode = "701";};
+        name = "fcgiwrap-${u.username}";
+        value = {
+          after = ["nss-user-lookup.target"];
+          unitConfig = {
+            DefaultDependencies = "no";
+          };
+        };
       }
     );
 
+    # Not necessary with Fileserver anymore
+    # # Für jeden User erlauben wir o+x Permissions auf dem Home Directory
+    # users.users = forEachUser (
+    #   u: {
+    #     name = u.username;
+    #     value = {homeMode = "701";};
+    #   }
+    # );
+
     # Activation Script um automatisch .html-data und .cgi-bin Ordner für jeden User zu erstellen
     # DEACTIVATED because we may not be able to access remote home directories
-    # system.activationScripts = forEachUser (
-    #   user: {
-    #     name = "webserver-user-${user.name}";
+    # system.activationScripts = forEachUser (u:
+    #   {
+    #     name = "webserver-user-${u.username}";
     #     value = {
-    #       text = ''
-    #         html_data_dir="${user.home}/.html-data"
-    #         cgi_bin_dir="${user.home}/.cgi-bin"
+    #       text =
+    #         ''
+    #           html_data_dir="/home/${u.username}/.html-data"
+    #           cgi_bin_dir="/home/${u.username}/.cgi-bin"
 
-    #         if [ ! -d "$html_data_dir" ]; then
-    #           mkdir -p "$html_data_dir"
-    #           echo "👋 Hello statically from ${user.name}" > "$html_data_dir/index.html"
-    #           chown -R ${user.name}:${user.group} "$html_data_dir"
-    #         fi
+    #           if [ ! -d "$html_data_dir" ]; then
+    #             mkdir -p "$html_data_dir"
+    #             echo "👋 Hello statically from ${u.username}" > "$html_data_dir/index.html"
+    #             chown -R ${u.username}:psa "$html_data_dir"
+    #           fi
 
-    #         if [ ! -d "$cgi_bin_dir" ]; then
-    #           mkdir -p "$cgi_bin_dir"
-    #           cat > "$cgi_bin_dir/index.sh" << 'EOF'
-    #         #!/usr/bin/env bash
-    #         echo "Content-type: text/html"
-    #         echo ""
-    #         echo "👋 Hello dynamically from $(whoami)"
-    #         echo "We also support: php (php-cgi), perl, python3, ruby. Just change the shebang!"
-    #         EOF
-    #           chmod +x "$cgi_bin_dir/index.sh"
-    #           chown -R ${user.name}:${user.group} "$cgi_bin_dir"
-    #         fi
-    #       '';
-    #       deps = ["users"];
+    #           if [ ! -d "$cgi_bin_dir" ]; then
+    #             mkdir -p "$cgi_bin_dir"
+    #             cat > "$cgi_bin_dir/index.sh" << 'EOF'
+    #           #!/usr/bin/env bash
+    #           echo "Content-type: text/html"
+    #           echo ""
+    #           echo "👋 Hello dynamically from $(whoami)"
+    #           echo "We also support: php (php-cgi), perl, python3, ruby. Just change the shebang!"
+    #           EOF
+    #             chmod +x "$cgi_bin_dir/index.sh"
+    #             chown -R ${u.username}:psa "$cgi_bin_dir"
+    #           fi
+    #         '';
+    #       deps = [ "users" ];
     #     };
     #   }
     # );
@@ -173,7 +184,17 @@ in {
     environment.systemPackages = scriptPkgs;
 
     # Allow commonly known script shebangs
-    services.envfs.enable = true;
+    # DOESN'T WORK WITH LDAP BASH SYMLINK
+    # services.envfs.enable = true;
+
+    systemd.tmpfiles.rules = [
+      "L /bin/bash - - - - /run/current-system/sw/bin/bash"
+      "L /bin/perl - - - - /run/current-system/sw/bin/perl"
+      "L /bin/php-ci - - - - /run/current-system/sw/bin/php-cgi"
+      "L /bin/ruby - - - - /run/current-system/sw/bin/ruby"
+      "L /bin/python - - - - /run/current-system/sw/bin/python"
+      "L /bin/python3 - - - - /run/current-system/sw/bin/python3"
+    ];
 
     # IP Adresse hinzufügen
     systemd.network.networks."10-psa".address = ["192.168.6.69"];

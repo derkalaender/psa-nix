@@ -1,0 +1,434 @@
+[[users]]
+username = "atten"
+uid = 10021
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/atten"
+
+[[users]]
+username = "bader"
+uid = 10068
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/bader"
+
+[[users]]
+username = "barza"
+uid = 10083
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/barza"
+
+[[users]]
+username = "beckc"
+uid = 10035
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/beckc"
+
+[[users]]
+username = "becke"
+uid = 10038
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/becke"
+
+[[users]]
+username = "brand"
+uid = 10028
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/brand"
+
+[[users]]
+username = "braun"
+uid = 10014
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/braun"
+
+[[users]]
+username = "bruec"
+uid = 10003
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/bruec"
+
+[[users]]
+username = "catom"
+uid = 10032
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/catom"
+
+[[users]]
+username = "cebul"
+uid = 10018
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/cebul"
+
+[[users]]
+username = "citom"
+uid = 10074
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/citom"
+
+[[users]]
+username = "cruzc"
+uid = 10054
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/cruzc"
+
+[[users]]
+username = "dobro"
+uid = 10041
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/dobro"
+
+[[users]]
+username = "enges"
+uid = 10009
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/enges"
+
+[[users]]
+username = "erdoe"
+uid = 10071
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/erdoe"
+
+[[users]]
+username = "fache"
+uid = 10056
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/fache"
+
+[[users]]
+username = "fengj"
+uid = 10010
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/fengj"
+
+[[users]]
+username = "finis"
+uid = 10080
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/finis"
+
+[[users]]
+username = "fisch"
+uid = 10029
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/fisch"
+
+[[users]]
+username = "fuchs"
+uid = 10060
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/fuchs"
+
+[[users]]
+username = "georg"
+uid = 10007
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/georg"
+
+[[users]]
+username = "goelm"
+uid = 10044
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/goelm"
+
+[[users]]
+username = "grotz"
+uid = 10022
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/grotz"
+
+[[users]]
+username = "hallm"
+uid = 10079
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/hallm"
+
+[[users]]
+username = "hanyt"
+uid = 10058
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/hanyt"
+
+[[users]]
+username = "hausn"
+uid = 10061
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/hausn"
+
+[[users]]
+username = "hegen"
+uid = 10002
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/hegen"
+
+[[users]]
+username = "heinz"
+uid = 10030
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/heinz"
+
+[[users]]
+username = "helle"
+uid = 10043
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/helle"
+
+[[users]]
+username = "herzi"
+uid = 10051
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/herzi"
+
+[[users]]
+username = "heusl"
+uid = 10017
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/heusl"
+
+[[users]]
+username = "holst"
+uid = 10059
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/holst"
+
+[[users]]
+username = "huber"
+uid = 10047
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/huber"
+
+[[users]]
+username = "jiang"
+uid = 10075
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/jiang"
+
+[[users]]
+username = "karsu"
+uid = 10086
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/karsu"
+
+[[users]]
+username = "kaush"
+uid = 10084
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/kaush"
+
+[[users]]
+username = "kentj"
+uid = 10055
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/kentj"
+
+[[users]]
+username = "kilic"
+uid = 10069
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/kilic"
+
+[[users]]
+username = "klein"
+uid = 10046
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/klein"
+
+[[users]]
+username = "kochn"
+uid = 10024
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/kochn"
+
+[[users]]
+username = "kollo"
+uid = 10066
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/kollo"
+
+[[users]]
+username = "langi"
+uid = 10065
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/langi"
+
+[[users]]
+username = "lindl"
+uid = 10037
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/lindl"
+
+[[users]]
+username = "liuli"
+uid = 10036
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/liuli"
+
+[[users]]
+username = "loehr"
+uid = 10076
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/loehr"
+
+[[users]]
+username = "maier"
+uid = 10073
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/maier"
+
+[[users]]
+username = "manov"
+uid = 10057
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/manov"
+
+[[users]]
+username = "mehne"
+uid = 10027
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/mehne"
+
+[[users]]
+username = "mitte"
+uid = 10019
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/mitte"
+
+[[users]]
+username = "moell"
+uid = 10064
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/moell"
+
+[[users]]
+username = "murat"
+uid = 10081
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/murat"
+
+[[users]]
+username = "navar"
+uid = 10034
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/navar"
+
+[[users]]
+username = "olsso"
+uid = 10085
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/olsso"
+
+[[users]]
+username = "ottin"
+uid = 10015
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/ottin"
+
+[[users]]
+username = "perro"
+uid = 10078
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/perro"
+
+[[users]]
+username = "pfeff"
+uid = 10020
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/pfeff"
+
+[[users]]
+username = "pluda"
+uid = 10013
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/pluda"
+
+[[users]]
+username = "popee"
+uid = 10033
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/popee"
+
+[[users]]
+username = "rempe"
+uid = 10062
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/rempe"
+
+[[users]]
+username = "riedr"
+uid = 10012
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/riedr"
+
+[[users]]
+username = "rimme"
+uid = 10000
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/rimme"
+
+[[users]]
+username = "rooto"
+uid = 10042
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/rooto"
+
+[[users]]
+username = "ruedi"
+uid = 10045
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/ruedi"
+
+[[users]]
+username = "sandm"
+uid = 10072
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/sandm"
+
+[[users]]
+username = "schle"
+uid = 10077
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/schle"
+
+[[users]]
+username = "schlo"
+uid = 10063
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/schlo"
+
+[[users]]
+username = "schmi"
+uid = 10053
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/schmi"
+
+[[users]]
+username = "schmo"
+uid = 10031
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/schmo"
+
+[[users]]
+username = "schne"
+uid = 10082
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/schne"
+
+[[users]]
+username = "schra"
+uid = 10004
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/schra"
+
+[[users]]
+username = "seide"
+uid = 10001
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/seide"
+
+[[users]]
+username = "shulm"
+uid = 10008
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/shulm"
+
+[[users]]
+username = "sieve"
+uid = 10026
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/sieve"
+
+[[users]]
+username = "stein"
+uid = 10048
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/stein"
+
+[[users]]
+username = "styna"
+uid = 10052
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/styna"
+
+[[users]]
+username = "trana"
+uid = 10040
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/trana"
+
+[[users]]
+username = "trayk"
+uid = 10005
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/trayk"
+
+[[users]]
+username = "treml"
+uid = 10050
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/treml"
+
+[[users]]
+username = "verik"
+uid = 10025
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/verik"
+
+[[users]]
+username = "vossw"
+uid = 10067
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/vossw"
+
+[[users]]
+username = "wangn"
+uid = 10006
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/wangn"
+
+[[users]]
+username = "weinb"
+uid = 10039
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/weinb"
+
+[[users]]
+username = "wiesn"
+uid = 10016
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/wiesn"
+
+[[users]]
+username = "witte"
+uid = 10011
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/witte"
+
+[[users]]
+username = "wuche"
+uid = 10049
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/wuche"
+
+[[users]]
+username = "yorda"
+uid = 10070
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/yorda"
+
+[[users]]
+username = "zinsl"
+uid = 10023
+filemount = "fileserver.psa-team06.cit.tum.de:/mnt/raid/userdata/csvhome/zinsl"

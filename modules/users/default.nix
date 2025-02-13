@@ -47,6 +47,29 @@ in {
       default = [];
       description = "PSA users";
     };
+
+    psa.users.csv = mkOption {
+      type = with types;
+        listOf (submodule {
+          options = {
+            username = mkOption {
+              type = str;
+              description = "Username of the user";
+            };
+            uid = mkOption {
+              type = int;
+              description = "UID of the user";
+            };
+            filemount = mkOption {
+              type = nullOr str;
+              default = null;
+              description = "The user's filemount";
+            };
+          };
+        });
+      default = [];
+      description = "CSV users";
+    };
   };
 
   config = {
@@ -83,5 +106,8 @@ in {
 
     # PSA User für andere Module bereitstellen, basierend auf TOML-Datei
     psa.users.psa = (trivial.importTOML ./users.toml).users;
+
+    # CSV User für andere Module bereitstellen, basierend auf CSV-Datei
+    psa.users.csv = (trivial.importTOML ./csvusers.toml).users;
   };
 }
