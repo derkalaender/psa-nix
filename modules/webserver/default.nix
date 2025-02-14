@@ -7,9 +7,9 @@
   cfg = config.psa.webserver;
 
   # Document roots, world-readable
-  kumoSite = ./sites/kumo;
-  wwwSite = ./sites/www;
-  webSite = ./sites/web;
+  kumoSite = "/var/www/kumo";
+  wwwSite = "/var/www/www";
+  webSite = "/var/www/web";
 
   # Gemeine SSL Attribute
   sslAttr = {
@@ -45,6 +45,12 @@ in {
           };
         }
       );
+
+    # Mount webroots
+    fileSystems."/var/www" = {
+      device = "fileserver.psa-team06.cit.tum.de:/mnt/raid/services/nginx";
+      fsType = "nfs";
+    };
 
     services.nginx = {
       enable = true;
