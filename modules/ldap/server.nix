@@ -42,7 +42,7 @@ in {
       enable = true;
 
       # Only allow secure connections
-      urlList = ["ldapi:///" "ldaps:///" "ldap:///"];
+      urlList = ["ldapi:///" "ldaps:///"];
 
       # Recursive configuration in on-line configuration (OLC) format
       # Starts implicitly with dn: cn=config
