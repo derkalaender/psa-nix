@@ -1,0 +1,1 @@
+/^(.*)@(.*\.)?psa-team([0-9]+)\.cit\.tum\.de$/  \$1@cit\.tum\.de
