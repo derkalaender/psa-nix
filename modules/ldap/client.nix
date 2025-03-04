@@ -6,6 +6,7 @@
   cfg = config.psa.ldap;
 
   sssdConf = builtins.readFile ./sssd.conf;
+  certFile = ./slapd.crt;
 in {
   options = {
     psa.ldap.client = {
@@ -28,5 +29,7 @@ in {
     systemd.tmpfiles.rules = [
       "L /bin/bash - - - - /run/current-system/sw/bin/bash"
     ];
+
+    security.pki.certificateFiles = [certFile];
   };
 }
