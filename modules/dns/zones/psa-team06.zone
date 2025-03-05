@@ -22,7 +22,6 @@ kumo       A       192.168.6.6
 fileserver A       192.168.6.7
 ldap       A       192.168.6.8
 meiru      A       192.168.6.9
-karasu     A       192.168.6.10
 
 ; Webserver
 www        CNAME   kumo

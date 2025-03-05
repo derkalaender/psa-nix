@@ -90,12 +90,6 @@
                                                 "ip-address": "192.168.6.9",
                                                 "hostname": "vmpsateam06-09"
                                         },
-                                        // VM10
-                                        {
-                                                "hw-address": "08:00:27:20:3f:54",
-                                                "ip-address": "192.168.6.10",
-                                                "hostname": "vmpsateam06-10"
-                                        },
                                 ]
                         }
                 ],

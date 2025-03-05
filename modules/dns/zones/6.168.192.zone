@@ -24,7 +24,6 @@ $TTL 300 ; Caching Dauer in Sekunden
 7         PTR     fileserver.psa-team06.cit.tum.de.
 8         PTR     ldap.psa-team06.cit.tum.de.
 9         PTR     meiru.psa-team06.cit.tum.de.
-10        PTR     karasu.psa-team06.cit.tum.de.
 
 ; Webserver
 69        PTR     web.psa-team06.cit.tum.de.
