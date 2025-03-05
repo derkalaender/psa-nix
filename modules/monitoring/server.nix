@@ -22,6 +22,9 @@ in {
       # Metrics visualization
       grafana = {
         enable = true;
+        settings = {
+          server.http_addr = ""; # Listen on all interfaces
+        };
       };
     };
   };
