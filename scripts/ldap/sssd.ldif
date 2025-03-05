@@ -1,0 +1,5 @@
+dn: cn=sssd,dc=team06,dc=psa,dc=cit,dc=tum,dc=de
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: sssd
+userPassword: {SSHA}kXddm3ykO6RaNC7oaduQNrRnBPM/lPuq

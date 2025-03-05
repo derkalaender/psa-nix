@@ -1,0 +1,20 @@
+dn: dc=team06,dc=psa,dc=cit,dc=tum,dc=de
+objectClass: dcObject
+objectClass: organization
+dc: team06
+o: UwU Corp
+description: Team06 base directory
+
+dn: ou=users,dc=team06,dc=psa,dc=cit,dc=tum,dc=de
+objectClass: organizationalUnit
+ou: users
+
+dn: ou=groups,dc=team06,dc=psa,dc=cit,dc=tum,dc=de
+objectClass: organizationalUnit
+ou: groups
+
+dn: cn=psa,ou=groups,dc=team06,dc=psa,dc=cit,dc=tum,dc=de
+objectClass: posixGroup
+cn: psa
+gidNumber: 1000
+description: PSA main group
