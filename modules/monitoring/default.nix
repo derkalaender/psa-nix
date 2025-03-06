@@ -5,6 +5,7 @@ in {
     ./server.nix
     ./os.nix
     ./network.nix
+    ./dns.nix
   ];
 
   options = {
