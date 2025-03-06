@@ -7,6 +7,7 @@ in {
     ./network.nix
     ./dns.nix
     ./dhcp.nix
+    ./webserver.nix
   ];
 
   options = {
@@ -16,6 +17,10 @@ in {
         default = [];
       };
       routerIPAll = mkOption {
+        type = with types; listOf str;
+        default = [];
+      };
+      webserverDomains = mkOption {
         type = with types; listOf str;
         default = [];
       };
@@ -46,6 +51,19 @@ in {
         "192.168.8.5"
         "192.168.9.10"
         "192.168.10.2"
+      ];
+      webserverDomains = [
+        "kumo.psa-team06.cit.tum.de"
+        "www.psa-team06.cit.tum.de"
+        "web.psa-team06.cit.tum.de"
+        "192.168.6.69"
+        "kumo.psa-team06.cit.tum.de/~ge59pib"
+        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/index.sh"
+        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.sh"
+        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.php"
+        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.py"
+        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.pl"
+        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.rb"
       ];
     };
   };

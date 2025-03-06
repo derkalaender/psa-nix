@@ -5,3 +5,14 @@ modules:
     icmp:
       preferred_ip_protocol: "ip4" # default is IPv6
       ip_protocol_fallback: false # don't fall back to IPv6
+  http_200:
+    prober: http
+    timeout: 5s
+    http:
+      preferred_ip_protocol: "ip4" # default is IPv6
+      ip_protocol_fallback: false # don't fall back to IPv6
+      valid_status_codes: [200] # default is any 2xx status code, but we specifically want 200 OK
+      method: GET
+      follow_redirects: true
+      tls_config:
+        insecure_skip_verify: true # don't verify self-signed certificate
