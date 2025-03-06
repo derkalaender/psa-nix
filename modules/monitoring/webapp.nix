@@ -9,7 +9,7 @@
         params.module = ["http_200"];
         static_configs = [
           {
-            targets = ["neko.psa-team06.cit.tum.de"];
+            targets = ["https://psa.in.tum.de:60642"];
           }
         ];
         # This is needed so we can have the targets be the actual VMs but route all requests to blackbox locally

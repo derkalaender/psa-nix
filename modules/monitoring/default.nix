@@ -54,17 +54,17 @@ in {
         "192.168.10.2"
       ];
       webserverDomains = [
-        "kumo.psa-team06.cit.tum.de"
-        "www.psa-team06.cit.tum.de"
-        "web.psa-team06.cit.tum.de"
-        "192.168.6.69"
-        "kumo.psa-team06.cit.tum.de/~ge59pib"
-        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/index.sh"
-        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.sh"
-        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.php"
-        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.py"
-        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.pl"
-        "kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.rb"
+        "https://kumo.psa-team06.cit.tum.de"
+        "https://www.psa-team06.cit.tum.de"
+        "https://web.psa-team06.cit.tum.de"
+        "https://192.168.6.69"
+        "https://kumo.psa-team06.cit.tum.de/~ge59pib"
+        "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/index.sh"
+        "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.sh"
+        "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.php"
+        "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.py"
+        "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.pl"
+        "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.rb"
       ];
     };
   };
