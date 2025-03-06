@@ -6,6 +6,7 @@ in {
     ./os.nix
     ./network.nix
     ./dns.nix
+    ./dhcp.nix
   ];
 
   options = {
