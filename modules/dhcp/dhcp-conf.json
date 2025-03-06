@@ -1,5 +1,10 @@
 {
     "Dhcp4": {
+        // Control socket for monitoring
+        "control-socket": {
+            "socket-type": "unix",
+            "socket-name": "/run/kea/kea-dhcp4.socket"
+        },
         // Gültigkeit eines Lease (6h)
         "valid-lifetime": 21600,
         // Nach wie vielen sec soll neu angefragt werden
