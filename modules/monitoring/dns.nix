@@ -7,7 +7,7 @@
         job_name = "dns";
         static_configs = [
           {
-            targets = "localhost:9153";
+            targets = ["localhost:9153"];
           }
         ];
       }
