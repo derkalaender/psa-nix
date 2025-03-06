@@ -3,17 +3,11 @@
   lib,
   ...
 }: let
-  inherit (lib) mkIf mkMerge mkEnableOption;
+  inherit (lib) mkMerge;
   cfg = config.psa.monitoring;
 in {
-  options = {
-    psa.monitoring.os = {
-      enable = mkEnableOption "Node exporter for monitoring basic OS metrics";
-    };
-  };
-
   config = mkMerge [
-    (mkIf cfg.os.enable {
+    {
       services.prometheus.exporters.node = {
         enable = true;
         enabledCollectors = [
@@ -26,7 +20,8 @@ in {
           "thermal_zone"
         ];
       };
-    })
+    }
+
     {
       # Collectors
       services.prometheus.scrapeConfigs = [
