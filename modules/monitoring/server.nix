@@ -49,5 +49,12 @@ in {
         };
       };
     };
+
+    # Make Grafana use proxy
+    systemd.services.grafana.environment = {
+      HTTP_PROXY = config.networking.proxy.httpProxy;
+      HTTPS_PROXY = config.networking.proxy.httpProxy;
+      NO_PROXY = config.networking.proxy.noProxy;
+    };
   };
 }
