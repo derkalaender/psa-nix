@@ -3,37 +3,45 @@
   lib,
   ...
 }: let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.psa.monitoring;
 in {
   options = {
     psa.monitoring.server = {
-      enable = lib.mkEnableOption "Monitoring server consisting of Prometheus & Grafana";
+      enable = mkEnableOption "Monitoring server consisting of Prometheus & Grafana";
     };
   };
 
-  config = lib.mkIf cfg.server.enable {
+  config = mkIf cfg.server.enable {
     services = {
       # Metrics collection
       prometheus = {
         enable = true;
-        globalConfig.scrape_interval = "20s"; # default is 1m, but we want more frequent updates
+        globalConfig = {
+          scrape_interval = "15s"; # default is 1m, but we want more frequent updates
+          evaluation_interval = "15s"; # default is 1m
+        };
 
         # Collectors
         scrapeConfigs = [
           {
-            job_name = "os";
+            # Prometheus itself
+            job_name = "prometheus";
             static_configs = [
               {
                 targets = [
-                  "localhost:9100"
-                  "192.168.6.2:9100"
-                  "192.168.6.3:9100"
-                  "192.168.6.4:9100"
-                  "192.168.6.5:9100"
-                  "192.168.6.6:9100"
-                  "192.168.6.7:9100"
-                  "192.168.6.8:9100"
-                  "192.168.6.9:9100"
+                  "localhost:${toString config.services.prometheus.port}"
+                ];
+              }
+            ];
+          }
+          {
+            # Grafana
+            job_name = "grafana";
+            static_configs = [
+              {
+                targets = [
+                  "localhost:${toString config.services.grafana.port}"
                 ];
               }
             ];
