@@ -32,7 +32,7 @@ in {
       services.prometheus.scrapeConfigs = [
         {
           # OS metrics
-          job_name = "node";
+          job_name = "os";
           static_configs = [
             {
               targets = map (ip: "${ip}:${toString config.services.prometheus.exporters.node.port}") cfg.vms.myIPAll;
