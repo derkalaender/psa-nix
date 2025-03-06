@@ -8,6 +8,7 @@ in {
     ./dns.nix
     ./dhcp.nix
     ./webserver.nix
+    ./webapp.nix
   ];
 
   options = {
