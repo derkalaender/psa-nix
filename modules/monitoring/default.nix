@@ -21,7 +21,11 @@ in {
         type = with types; listOf str;
         default = [];
       };
-      webserverDomains = mkOption {
+      webserverURLs = mkOption {
+        type = with types; listOf str;
+        default = [];
+      };
+      webappURLs = mkOption {
         type = with types; listOf str;
         default = [];
       };
@@ -53,7 +57,7 @@ in {
         "192.168.9.10"
         "192.168.10.2"
       ];
-      webserverDomains = [
+      webserverURLs = [
         "https://kumo.psa-team06.cit.tum.de"
         "https://www.psa-team06.cit.tum.de"
         "https://web.psa-team06.cit.tum.de"
@@ -65,6 +69,10 @@ in {
         "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.py"
         "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.pl"
         "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.rb"
+      ];
+      webappURLs = [
+        "https://psa.in.tum.de:60642"
+        "https://psa.in.tum.de:60642/ghost/api/v3/admin/site/"
       ];
     };
   };

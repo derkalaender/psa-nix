@@ -1,4 +1,6 @@
-{config, ...}: {
+{config, ...}: let
+  cfg = config.psa.monitoring;
+in {
   config = {
     # Collectors
     services.prometheus.scrapeConfigs = [
@@ -9,7 +11,7 @@
         params.module = ["http_200"];
         static_configs = [
           {
-            targets = ["https://psa.in.tum.de:60642"];
+            targets = cfg.vms.webserverURLs;
           }
         ];
         # This is needed so we can have the targets be the actual VMs but route all requests to blackbox locally
