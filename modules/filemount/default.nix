@@ -24,6 +24,7 @@ in {
             "x-systemd.automount"
             "x-systemd.idle-timeout=${idleTimeout}"
             "x-systemd.mount-timeout=${failTimeout}"
+            "_netdev"
           ];
         };
       }

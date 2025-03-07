@@ -50,6 +50,10 @@ in {
     fileSystems."/var/www" = {
       device = "fileserver.psa-team06.cit.tum.de:/mnt/raid/services/nginx";
       fsType = "nfs";
+      options = [
+        "x-systemd.automount"
+        "_netdev"
+      ];
     };
 
     services.nginx = {
