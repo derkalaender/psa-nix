@@ -1,16 +1,18 @@
-{ config, lib, ... }:
-let
-  cfg = config.psa.networking;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.psa.networking;
+in {
   options = {
-  	psa.networking = {
-  	  router = lib.mkOption {
-  	  	type = lib.types.bool;
-  	  	default = false;
-  	  	description = "Marks this VM as the router VM. This enables packet forwarding and statically configures everything DNS and IP related. Also activates DNS and DHCP modules.";
-  	  };
-  	};
+    psa.networking = {
+      router = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Marks this VM as the router VM. This enables packet forwarding and statically configures everything DNS and IP related. Also activates DNS and DHCP modules.";
+      };
+    };
   };
 
   config = {
@@ -21,8 +23,8 @@ in
     systemd.network = {
       enable = true;
 
-	  # Interface für Internet Zugang
-	  networks."10-internet" = {
+      # Interface für Internet Zugang
+      networks."10-internet" = {
         name = "enp0s3";
         DHCP = "ipv4"; # Wir brauchen eine IP-Adresse für Internet Zugang.
         dhcpV4Config = {
@@ -54,17 +56,16 @@ in
           DHCP = "ipv4";
           dhcpV4Config.UseDomains = true;
           # AllowList kann man noch nicht direkt einstellen
-          extraConfig =
-            ''
+          extraConfig = ''
             [DHCPv4]
             AllowList=192.168.6.1
-            '';
+          '';
         })
 
-        # Falls wir Router sind, legen wir die gesamte Konfiguration statisch fest    
+        # Falls wir Router sind, legen wir die gesamte Konfiguration statisch fest
         (lib.mkIf cfg.router {
-          domains = [ "psa-team06.cit.tum.de" ];
-          dns = [ "192.168.6.1" "1.1.1.1" "8.8.8.8" ]; # Router VM for DNS + Cloudflare & Google Fallback
+          domains = ["psa-team06.cit.tum.de"];
+          dns = ["192.168.6.1" "1.1.1.1" "8.8.8.8"]; # Router VM for DNS + Cloudflare & Google Fallback
           address = [
             "192.168.6.1/24" # Team Subnet
             # Restliche Inter-PSA Subnets
@@ -79,25 +80,70 @@ in
             "192.168.106.6/24"
           ];
           routes = [
-            { routeConfig = { Destination = "192.168.1.0/24"; Gateway = "192.168.61.1"; }; }
-            { routeConfig = { Destination = "192.168.2.0/24"; Gateway = "192.168.62.2"; }; }
-            { routeConfig = { Destination = "192.168.3.0/24"; Gateway = "192.168.63.3"; }; }
-            { routeConfig = { Destination = "192.168.4.0/24"; Gateway = "192.168.64.4"; }; }
-            { routeConfig = { Destination = "192.168.5.0/24"; Gateway = "192.168.65.5"; }; }
-            { routeConfig = { Destination = "192.168.7.0/24"; Gateway = "192.168.76.7"; }; }
-            { routeConfig = { Destination = "192.168.8.0/24"; Gateway = "192.168.86.8"; }; }
-           { routeConfig = { Destination = "192.168.9.0/24"; Gateway = "192.168.96.9"; }; }
-            { routeConfig = { Destination = "192.168.10.0/24"; Gateway = "192.168.106.10"; }; }
+            {
+              routeConfig = {
+                Destination = "192.168.1.0/24";
+                Gateway = "192.168.61.1";
+              };
+            }
+            {
+              routeConfig = {
+                Destination = "192.168.2.0/24";
+                Gateway = "192.168.62.2";
+              };
+            }
+            {
+              routeConfig = {
+                Destination = "192.168.3.0/24";
+                Gateway = "192.168.63.3";
+              };
+            }
+            {
+              routeConfig = {
+                Destination = "192.168.4.0/24";
+                Gateway = "192.168.64.4";
+              };
+            }
+            {
+              routeConfig = {
+                Destination = "192.168.5.0/24";
+                Gateway = "192.168.65.5";
+              };
+            }
+            {
+              routeConfig = {
+                Destination = "192.168.7.0/24";
+                Gateway = "192.168.76.7";
+              };
+            }
+            {
+              routeConfig = {
+                Destination = "192.168.8.0/24";
+                Gateway = "192.168.86.8";
+              };
+            }
+            {
+              routeConfig = {
+                Destination = "192.168.9.0/24";
+                Gateway = "192.168.96.9";
+              };
+            }
+            {
+              routeConfig = {
+                Destination = "192.168.10.0/24";
+                Gateway = "192.168.106.10";
+              };
+            }
           ];
           # IPv4 Forwarding aktivieren
-          networkConfig.IPForward = true;
+          networkConfig.IPv4Forwarding = true;
         })
       ];
     };
 
     # systemd-resolved wird für korrektes DNS benötigt
     services.resolved.enable = true;
-    
+
     # ICMP Redirects deaktivieren
     boot.kernel.sysctl = {
       "net.ipv4.conf.all.send_redirects" = false;
