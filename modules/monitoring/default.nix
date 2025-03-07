@@ -9,6 +9,7 @@ in {
     ./dhcp.nix
     ./webserver.nix
     ./webapp.nix
+    ./mail.nix
   ];
 
   options = {
