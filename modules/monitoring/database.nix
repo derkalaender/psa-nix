@@ -9,7 +9,7 @@ in {
         job_name = "database";
         static_configs = [
           {
-            targets = cfg.targets.databaseIPs;
+            targets = map (ip: "${ip}:9104") cfg.targets.databaseIPs;
           }
         ];
       }
