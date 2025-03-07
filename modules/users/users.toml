@@ -2,7 +2,7 @@
 username = "ge95vir"
 uid = 1010
 sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEXPasCKmYHeTJ06DBWXCaYYUVM/Euo+X5tU0WpGWxRt gedeon.lenz@tum.de"
-filemount = "fileserver.psa-team01.cit.tum.de:/raid/psaraid/userdata/home/team01/ge95vir"
+# filemount = "fileserver.psa-team01.cit.tum.de:/raid/psaraid/userdata/home/team01/ge95vir"
 
 [[users]]
 username = "ge43fim"
@@ -91,7 +91,7 @@ filemount = "fileserver.psa-team08.cit.tum.de:/storage/userdata/home/ge94bob"
 username = "ge87huk"
 uid = 1090
 sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGeIYnWtdhXEbQ+ZxiEd9Ad5/C4BdK60G8k7fJ4XAu34 ge87huk@mytum.de"
-filemount = "fileserver.psa-team01.cit.tum.de:/raid/psaraid/userdata/home/team01/ge87huk"
+# filemount = "fileserver.psa-team01.cit.tum.de:/raid/psaraid/userdata/home/team01/ge87huk"
 
 [[users]]
 username = "ge64wug"
