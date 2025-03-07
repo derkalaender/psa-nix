@@ -8,6 +8,7 @@ in {
     ./dns.nix
     ./dhcp.nix
     ./webserver.nix
+    ./database.nix
     ./webapp.nix
     ./mail.nix
   ];
@@ -23,6 +24,10 @@ in {
         default = [];
       };
       webserverURLs = mkOption {
+        type = with types; listOf str;
+        default = [];
+      };
+      databaseIPs = mkOption {
         type = with types; listOf str;
         default = [];
       };
@@ -70,6 +75,10 @@ in {
         "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.py"
         "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.pl"
         "https://kumo.psa-team06.cit.tum.de/~ge59pib/cgi-bin/wow.rb"
+      ];
+      databaseIPs = [
+        "192.168.6.4"
+        "192.168.6.5"
       ];
       webappURLs = [
         "https://psa.in.tum.de:60642"
