@@ -30,7 +30,7 @@ in {
           job_name = "os";
           static_configs = [
             {
-              targets = map (ip: "${ip}:${toString config.services.prometheus.exporters.node.port}") cfg.vms.myIPAll;
+              targets = map (ip: "${ip}:${toString config.services.prometheus.exporters.node.port}") cfg.targets.myIPs;
             }
           ];
         }

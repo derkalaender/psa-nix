@@ -12,12 +12,12 @@ in {
   ];
 
   options = {
-    psa.monitoring.vms = {
-      myIPAll = mkOption {
+    psa.monitoring.targets = {
+      myIPs = mkOption {
         type = with types; listOf str;
         default = [];
       };
-      routerIPAll = mkOption {
+      routerIPs = mkOption {
         type = with types; listOf str;
         default = [];
       };
@@ -33,8 +33,8 @@ in {
   };
 
   config = {
-    psa.monitoring.vms = {
-      myIPAll = [
+    psa.monitoring.targets = {
+      myIPs = [
         "192.168.6.1"
         "192.168.6.2"
         "192.168.6.3"
@@ -45,7 +45,7 @@ in {
         "192.168.6.8"
         "192.168.6.9"
       ];
-      routerIPAll = [
+      routerIPs = [
         "192.168.1.18"
         "192.168.2.1"
         "192.168.3.3"

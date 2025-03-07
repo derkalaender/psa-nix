@@ -11,10 +11,10 @@ in {
         params.module = ["http_200"];
         static_configs = [
           {
-            targets = cfg.vms.webappURLs;
+            targets = cfg.targets.webappURLs;
           }
         ];
-        # This is needed so we can have the targets be the actual VMs but route all requests to blackbox locally
+        # This is needed so can route the targets to the Blackbox Exporter
         relabel_configs = [
           {
             source_labels = ["__address__"];
