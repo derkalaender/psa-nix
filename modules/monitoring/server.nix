@@ -5,6 +5,11 @@
 }: let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.psa.monitoring;
+
+  ssl = {
+    crtFile = "/etc/ssl/grafana/grafana.crt";
+    keyFile = "/etc/ssl/grafana/grafana.key";
+  };
 in {
   options = {
     psa.monitoring.server = {
@@ -38,10 +43,12 @@ in {
           {
             # Grafana
             job_name = "grafana";
+            scheme = "https"; # Grafana is served only over HTTPS
+            tls_config.insecure_skip_verify = true; # Certificate is self-signed
             static_configs = [
               {
                 targets = [
-                  "localhost:${toString config.services.grafana.port}"
+                  "localhost:${toString config.services.grafana.settings.server.http_port}"
                 ];
               }
             ];
@@ -54,6 +61,13 @@ in {
         enable = true;
         settings = {
           server.http_addr = ""; # Listen on all interfaces
+          server.protocol = "https";
+          server.cert_file = ssl.crtFile;
+          server.cert_key = ssl.keyFile;
+
+          # Better performance
+          server.enable_gzip = true;
+          database.wal = true;
         };
       };
     };
