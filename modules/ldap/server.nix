@@ -74,6 +74,19 @@ in {
             customLDIF
           ];
 
+          "olcDatabase={0}config".attrs = {
+            objectClass = ["olcDatabaseConfig" "olcConfig"];
+            olcDatabase = "{0}config";
+            olcAccess = [
+              # linux root user: full access
+              ''
+                {0}to *
+                 by dn.exact=uidNumber=0+gidNumber=0,cn=peercred,cn=external,cn=auth manage
+                 by * break
+              ''
+            ];
+          };
+
           # Database
           "olcDatabase={1}mdb".attrs = {
             objectClass = ["olcDatabaseConfig" "olcMdbConfig"];
@@ -127,7 +140,7 @@ in {
                  by users read
                  by * none
               ''
-              # all other properties may only be red by oneself
+              # all other properties may only be read by oneself
               ''
                 {6}to *
                  by self read

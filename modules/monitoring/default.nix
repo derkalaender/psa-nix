@@ -11,6 +11,7 @@ in {
     ./database.nix
     ./webapp.nix
     ./mail.nix
+    ./ldap.nix
   ];
 
   options = {
