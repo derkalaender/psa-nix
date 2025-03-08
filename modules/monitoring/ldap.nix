@@ -49,7 +49,7 @@ in {
           job_name = "ldap";
           static_configs = [
             {
-              targets = ["ldap.psa-team06.cit.tum.de:${toString config.services.prometheus.exporters.ldap.port}"];
+              targets = ["ldap.psa-team06.cit.tum.de:${toString config.services.prometheus.exporters.openldap.port}"];
             }
           ];
         }
