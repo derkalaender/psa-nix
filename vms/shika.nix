@@ -7,6 +7,8 @@
   # Monitoring macht auf dem Router am meisten Sinn, weil er alle Daten sieht
   psa.monitoring.server.enable = true;
 
+  psa.security.ids.enable = true;
+
   # Zusätzlich stellen wir noch den hostName statisch fest
   networking.hostName = "vmpsateam06-01";
 }
