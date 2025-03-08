@@ -15,7 +15,7 @@ in {
         enable = true;
         ldapURI = "ldapi:///var/run/openldap/ldapi";
         configFile = "/var/lib/openldap-exporter/config.yaml";
-        scrapeInterval = "1s";
+        scrapeInterval = "10s";
       };
 
       # Access to monitoring database in LDAP
