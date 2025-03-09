@@ -26,6 +26,7 @@ in {
           scrape_interval = "15s"; # default is 1m, but we want more frequent updates
           evaluation_interval = "15s"; # default is 1m
         };
+        retentionTime = "2d"; # Keep metrics for 2 days
 
         # Collectors
         scrapeConfigs = [
