@@ -62,7 +62,7 @@ in {
         ### OTHER TEAMS FORWARDING ###
 
         psa-team01.cit.tum.de 1.168.192.in-addr.arpa {
-                forward . 192.168.1.1
+                forward . 192.168.1.13
                 import common
         }
 
@@ -96,7 +96,7 @@ in {
         }
 
         psa-team08.cit.tum.de 8.168.192.in-addr.arpa {
-                forward . 192.168.8.6
+                forward . 192.168.8.10
                 import common
         }
 
