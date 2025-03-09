@@ -65,6 +65,7 @@ in {
           server.protocol = "https";
           server.cert_file = ssl.crtFile;
           server.cert_key = ssl.keyFile;
+          server.root_url = "https://psa.in.tum.de:60666"; # Public facing URL, used in alerts
 
           # Better performance
           server.enable_gzip = true;
