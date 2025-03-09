@@ -96,12 +96,12 @@ in {
         }
 
         psa-team08.cit.tum.de 8.168.192.in-addr.arpa {
-                forward . 192.168.8.10
+                forward . 192.168.8.6
                 import common
         }
 
         psa-team09.cit.tum.de 9.168.192.in-addr.arpa {
-                forward . 192.168.9.1
+                forward . 192.168.9.10
                 import common
         }
 
