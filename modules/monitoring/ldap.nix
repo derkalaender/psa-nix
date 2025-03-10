@@ -18,6 +18,8 @@ in {
         scrapeInterval = "10s";
       };
 
+      networking.firewall.allowedTCPPorts = [config.services.prometheus.exporters.openldap.port];
+
       # Access to monitoring database in LDAP
       # See: https://www.ibm.com/docs/en/instana-observability/current?topic=technologies-monitoring-openldap
       services.openldap.settings.children = {

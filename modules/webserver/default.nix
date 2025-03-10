@@ -114,6 +114,8 @@ in {
       '';
     };
 
+    networking.firewall.allowedTCPPorts = [80 443];
+
     # Für jeden User wird eine fcgiwrap Service Instanz erzeugt
     services.fcgiwrap.instances = forEachUser (
       u: {

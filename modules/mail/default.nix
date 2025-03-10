@@ -216,5 +216,7 @@ in {
       neomutt
       swaks
     ];
+
+    networking.firewall.allowedTCPPorts = [25 143 993 110 995]; # smtp imap imaps pop3 pop3s
   };
 }

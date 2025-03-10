@@ -9,6 +9,12 @@
 
   psa.security.ids.enable = true;
 
+  # Pakete sollen weitergeleitet werden
+  networking.firewall.allowForwarding = true;
+
+  # Node Exporter Access ist komplett lokal
+  psa.monitoring.os.openFirewall = false;
+
   # Zusätzlich stellen wir noch den hostName statisch fest
   networking.hostName = "vmpsateam06-01";
 }

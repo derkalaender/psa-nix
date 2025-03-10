@@ -80,5 +80,7 @@ in {
       HTTPS_PROXY = config.networking.proxy.httpProxy;
       NO_PROXY = config.networking.proxy.noProxy;
     };
+
+    networking.firewall.allowedTCPPorts = [config.services.grafana.settings.server.http_port];
   };
 }

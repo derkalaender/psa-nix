@@ -10,6 +10,7 @@ in {
       services.prometheus.exporters.postfix = {
         enable = true;
       };
+      networking.firewall.allowedTCPPorts = [config.services.prometheus.exporters.postfix.port];
     })
     {
       # Collectors

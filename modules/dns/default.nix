@@ -111,5 +111,9 @@ in {
         }
       '';
     };
+
+    # Enable firewall
+    networking.firewall.allowedUDPPorts = [53]; # domain
+    networking.firewall.allowedTCPPorts = [53]; # domain (zone transfer)
   };
 }

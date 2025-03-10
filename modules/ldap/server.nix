@@ -151,5 +151,7 @@ in {
         };
       };
     };
+
+    networking.firewall.allowedTCPPorts = [636]; # ldaps
   };
 }
