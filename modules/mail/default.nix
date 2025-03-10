@@ -217,6 +217,16 @@ in {
       swaks
     ];
 
+    # Mount mail storage
+    fileSystems."/var/mail" = {
+      device = "fileserver.psa-team06.cit.tum.de:/mnt/raid/services/mail";
+      fsType = "nfs";
+      options = [
+        "x-systemd.automount"
+        "_netdev"
+      ];
+    };
+
     networking.firewall.allowedTCPPorts = [25 143 993 110 995]; # smtp imap imaps pop3 pop3s
   };
 }
