@@ -81,7 +81,7 @@ in {
               # linux root user: full access
               ''
                 {0}to *
-                 by dn.exact=uidNumber=0+gidNumber=0,cn=peercred,cn=external,cn=auth manage
+                 by dn.exact=uidNumber=0+gidNumber=0,cn=peercred,cn=external,cn=auth read
                  by * break
               ''
             ];
